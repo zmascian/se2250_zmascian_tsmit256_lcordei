@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoundsCheck : MonoBehaviour
 {
+    //Change in inspector
     public float radius;
     public float camHeight;
     public float camWidth;
