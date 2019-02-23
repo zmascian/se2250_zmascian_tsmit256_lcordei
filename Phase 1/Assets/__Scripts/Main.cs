@@ -36,7 +36,7 @@ public class Main : MonoBehaviour
         //Position enemy above the screen with random x position
         float enemyPadding = enemyDefaultPadding;
         if(go.GetComponent<BoundsCheck>() != null){
-            enemyPadding = Mathf.Abs(go.GetComponent<BoundsCheck>().raduis);
+            enemyPadding = Mathf.Abs(go.GetComponent<BoundsCheck>().radius);
         }
 
         //Set the initial position for this spawned enemy
