@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 140796699}
   - component: {fileID: 140796698}
   - component: {fileID: 140796697}
+  - component: {fileID: 140796700}
   m_Layer: 0
   m_Name: _Hero
   m_TagString: Untagged
@@ -341,6 +342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad7035c1ea3a464ca7a150269183524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 30
+  rollMult: -45
+  pitchMult: 30
+  shieldLevel: 1
 --- !u!4 &140796699
 Transform:
   m_ObjectHideFlags: 0
@@ -357,6 +362,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &140796700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140796696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0d22d61ec1ec24c841acb872edbca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 4
+  camHeight: 0
+  camWidth: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
