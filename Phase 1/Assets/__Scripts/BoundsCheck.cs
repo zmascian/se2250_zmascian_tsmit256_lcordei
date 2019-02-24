@@ -12,7 +12,7 @@ public class BoundsCheck : MonoBehaviour
     public float camWidth;
     public bool offRight, offLeft, offUp, offDown;
 
-    void Start()
+    void Awake()
     {
         camHeight = Camera.main.orthographicSize;
         camWidth = camHeight * Camera.main.aspect;

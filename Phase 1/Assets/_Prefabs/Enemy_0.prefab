@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0d22d61ec1ec24c841acb872edbca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
+  radius: -2.5
   keepOnScreen: 0
   isOnScreen: 0
   camHeight: 0
