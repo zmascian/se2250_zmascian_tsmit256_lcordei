@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
@@ -11,12 +12,6 @@ public class Main : MonoBehaviour
     public float enemyDefaultPadding;
 
     private BoundsCheck bndCheck;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     private void Awake()
     {
@@ -51,12 +46,5 @@ public class Main : MonoBehaviour
         Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
    
 }
