@@ -12,7 +12,7 @@ public class BoundsCheck : MonoBehaviour
     public float camWidth;
     public bool offRight, offLeft, offUp, offDown;
 
-    void Awake()
+    void Start()
     {
         camHeight = Camera.main.orthographicSize;
         camWidth = camHeight * Camera.main.aspect;
@@ -52,6 +52,7 @@ public class BoundsCheck : MonoBehaviour
             offDown = true;
         }
 
+        isOnScreen = !(offRight || offLeft || offUp || offDown);
         if (keepOnScreen && !isOnScreen)
         {
             transform.position = pos;
