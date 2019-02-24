@@ -8,7 +8,7 @@ public class Enemy_1 : Enemy
 
    void Start()
     {
-        random = gameObject.transform.position.x;
+        random = Time.time;
     }
     public override void Move()
     {
