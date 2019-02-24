@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed, fireRate, health, score;
-    private BoundsCheck bndCheck;
+    protected BoundsCheck bndCheck;
 
 
     void Awake()
