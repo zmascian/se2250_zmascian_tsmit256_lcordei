@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
     {
         Move();   
 
-        if( bndCheck != null && bndCheck.offDown)
+        if( bndCheck != null && (bndCheck.offDown || bndCheck.offLeft|| bndCheck.offRight))
         {
             if (pos.y < bndCheck.camHeight - bndCheck.radius)
             {
