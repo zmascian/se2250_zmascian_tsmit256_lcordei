@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Enemy_1 : Enemy
 {
+   
     public override void Move()
     {
-
         Vector3 tempPos = pos;
-        if (Random.Range(1,2) == 2)
+        const float random = tempPos.x;
+        if (random % 2 > 1)
         {
             tempPos.x -= speed * Time.deltaTime;
         }
