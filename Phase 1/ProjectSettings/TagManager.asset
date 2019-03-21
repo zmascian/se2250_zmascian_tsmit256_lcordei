@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Hero
+  - Enemy
+  - ProjectileHero
+  - ProjectileEnemy
   layers:
   - Default
   - TransparentFX
@@ -13,10 +17,10 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - 
-  - 
-  - 
+  - Hero
+  - Enemy
+  - ProjectileHero
+  - ProjectileEnemy
   - 
   - 
   - 

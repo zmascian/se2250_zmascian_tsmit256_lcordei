@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Enemy_1 : Enemy
 {
+  
     float random = 0;
-
+    
    void Start()
     {
         random = gameObject.transform.position.x;
@@ -13,16 +14,17 @@ public class Enemy_1 : Enemy
     public override void Move()
     {
         Vector3 tempPos = pos;
-       
+
         if (random % 2 > 1)
         {
-            tempPos.x -= speed * Time.deltaTime;
+            tempPos.x -=  speed * Time.deltaTime;
         }
         else
         {
             tempPos.x += speed * Time.deltaTime;
         }
         tempPos.y -= speed * Time.deltaTime;
+        
         pos = tempPos;
        
     }
