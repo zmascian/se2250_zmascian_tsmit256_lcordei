@@ -79,4 +79,16 @@ public class Main : MonoBehaviour
         //Reload _Scene_0 to restart the game
         SceneManager.LoadScene("_Scene_0");
     }
+
+    //Static Function that gets a WeaponDefintion from the WEAP_DICT static prrotected field of the Main class
+    static public WeaponDefinition GetWeaponDefinition(WeaponType wt)
+    {
+        //Ensures key exists
+        if (WEAP_DICT.ContainsKey(wt))
+        {
+            return (WEAP_DICT[wt]);
+        }
+
+        return (new WeaponDefinition());
+    }
 }
