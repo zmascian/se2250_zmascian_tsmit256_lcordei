@@ -7,12 +7,8 @@ using UnityEngine.SceneManagement;
 public enum WeaponType
 {
     none,       //no weapon
-    blaster,    //A simple blaster
-    spread,     //two shots simultaneously
-    phaser,     //shots that move in waves
-    missile,    //homing missiles
-    laser,      //Damage over time
-    shield      //raise sheildLevel
+    simple,     //One shot upwards
+    blaster,    //Triple Shot
 }
 
 public class Main : MonoBehaviour
