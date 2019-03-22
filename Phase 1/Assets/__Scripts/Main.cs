@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public enum WeaponType
 {
     none,       //no weapon
-    blaster,    //A simple blaster
-    spread,     //two shots simultaneously
+    Simple,    //A simple blaster
+    blaster,     //two shots simultaneously
     phaser,     //shots that move in waves
     missile,    //homing missiles
     laser,      //Damage over time
@@ -42,6 +42,13 @@ public class Main : MonoBehaviour
             WEAP_DICT[def.type] = def;
         }
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown("C"){
+            if (WEAP_DICT[]==)
+        }
     }
 
     public void SpawnEnemy() {
@@ -91,4 +98,7 @@ public class Main : MonoBehaviour
 
         return (new WeaponDefinition());
     }
+
+
+
 }
