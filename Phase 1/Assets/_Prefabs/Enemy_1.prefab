@@ -525,7 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   fireRate: 0
-  health: 0
+  health: 2
   score: 0
 --- !u!114 &1468309693408179499
 MonoBehaviour:
