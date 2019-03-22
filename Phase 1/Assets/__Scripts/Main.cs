@@ -3,13 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Enum of various possible types and includes 'shield' type to allow a shield power-up
+public enum WeaponType
+{
+    none,       //no weapon
+    blaster,    //A simple blaster
+    spread,     //two shots simultaneously
+    phaser,     //shots that move in waves
+    missile,    //homing missiles
+    laser,      //Damage over time
+    shield      //raise sheildLevel
+}
+
 public class Main : MonoBehaviour
 {
-    public static Main S;
+    public static Main S; // A singleton for Main
+    static Dictionary<WeaponType, WeaponDefinition> WEAP_DICT;
 
     public GameObject[] prefabEnemies;
     public float enemySpawnPerSecond;
     public float enemyDefaultPadding;
+    public WeaponDefinition[] weaponDefinitions;
 
     private BoundsCheck bndCheck;
 
@@ -20,6 +34,13 @@ public class Main : MonoBehaviour
         bndCheck = GetComponent<BoundsCheck>();
         //Invoke SpawnEnemy() once (in 2 seconds, based on default values)
         Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+
+        //A generic dictionary with WeaponType as the key
+        WEAP_DICT = new Dictionary<WeaponType, WeaponDefinition>();
+        foreach(WeaponDefinition def in weaponDefinitions)
+        {
+            WEAP_DICT[def.type] = def;
+        }
 
     }
 

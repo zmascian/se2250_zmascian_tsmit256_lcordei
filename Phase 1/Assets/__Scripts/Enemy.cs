@@ -47,4 +47,20 @@ public class Enemy : MonoBehaviour
         tempPos.y -= speed * Time.deltaTime;
         pos = tempPos;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        GameObject otherGO = collision.gameObject;
+        //If otherGO is projectileHero, destroy it and destroy this enemy instance
+        if(otherGO.tag == "ProjectileHero")
+        {
+            Destroy(otherGO);
+            Destroy(gameObject);
+        }
+        //If otherGO wasn't projectileHero, print the name of what was hit for debugging purposes
+        else
+        {
+            print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+        }
+    }
 }
