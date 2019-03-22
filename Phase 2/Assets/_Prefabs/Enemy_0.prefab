@@ -639,3 +639,4 @@ MonoBehaviour:
   fireRate: 0
   health: 3
   score: 0
+  powerUpDropChance: 1

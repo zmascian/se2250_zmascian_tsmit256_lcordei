@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8403625492973364550}
   - component: {fileID: 8403625492973364551}
   - component: {fileID: 8403625492973364548}
+  - component: {fileID: 4699727015481209987}
+  - component: {fileID: 6876142078554177742}
   m_Layer: 12
   m_Name: PowerUp
   m_TagString: PowerUp
@@ -109,6 +111,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &4699727015481209987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8403625492973364549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8bf924876004a99be6e97da449c14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotMinMax: {x: 15, y: 90}
+  driftMinMax: {x: 0.25, y: 2}
+  lifeTime: 6
+  fadeTime: 4
+  type: 0
+  cube: {fileID: 0}
+  letter: {fileID: 0}
+  rotPerSecond: {x: 20, y: 20, z: 20}
+  birthTime: 5
+--- !u!114 &6876142078554177742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8403625492973364549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0d22d61ec1ec24c841acb872edbca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  keepOnScreen: 0
+  isOnScreen: 1
+  camHeight: 0
+  camWidth: 0
+  offRight: 0
+  offLeft: 0
+  offUp: 0
+  offDown: 0
 --- !u!1 &8403625493264160326
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,8 +165,6 @@ GameObject:
   - component: {fileID: 8403625493264160322}
   - component: {fileID: 8403625493264160323}
   - component: {fileID: 8403625493264160320}
-  - component: {fileID: 8403625493264160332}
-  - component: {fileID: 8403625493264160333}
   m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
@@ -202,45 +244,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8403625493264160332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8403625493264160326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da0d22d61ec1ec24c841acb872edbca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 1
-  keepOnScreen: 0
-  isOnScreen: 0
-  camHeight: 0
-  camWidth: 0
-  offRight: 0
-  offLeft: 0
-  offUp: 0
-  offDown: 0
---- !u!114 &8403625493264160333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8403625493264160326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8bf924876004a99be6e97da449c14c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotMinMax: {x: 15, y: 90}
-  driftMinMax: {x: 0.25, y: 2}
-  lifeTime: 6
-  fadeTime: 4
-  type: 0
-  cube: {fileID: 0}
-  letter: {fileID: 0}
-  rotPerSecond: {x: 0, y: 0, z: 0}
-  birthTime: 0

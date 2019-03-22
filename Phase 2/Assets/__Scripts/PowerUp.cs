@@ -8,7 +8,7 @@ public class PowerUp : MonoBehaviour
     //This is an unusual but handy use of Vector2s. x holds a min value
     // and y a max value for Random.Range() that will be called later
     public Vector2 rotMinMax = new Vector2(15, 90);
-    public Vector2 driftMinMax = new Vector2(.25f, 2);
+    public Vector2 driftMinMax = new Vector2(0.75f, 3);
     public float lifeTime = 6f; //Seconds the PowerUp exists
     public float fadeTime = 4f; //Seconds it will then fade
 
@@ -31,7 +31,7 @@ public class PowerUp : MonoBehaviour
         letter = GetComponent<TextMesh>();
         rigid = GetComponent<Rigidbody>();
         bndCheck = GetComponent<BoundsCheck>();
-        cubeRend = cubeRend.GetComponent<Renderer>();
+        cubeRend = cube.GetComponent<Renderer>();
 
         //Set a random velocity
         Vector3 vel = Random.onUnitSphere; //Get Random XYZ velocity

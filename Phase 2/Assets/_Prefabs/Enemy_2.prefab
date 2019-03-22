@@ -273,6 +273,7 @@ MonoBehaviour:
   fireRate: 0
   health: 0
   score: 0
+  powerUpDropChance: 1
   lifeTime: 5
   points: []
   birthTime: 0

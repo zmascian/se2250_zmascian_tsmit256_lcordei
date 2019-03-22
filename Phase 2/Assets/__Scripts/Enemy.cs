@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public float speed, fireRate, health, score;
     protected BoundsCheck bndCheck;
+    public float powerUpDropChance = 1f; //this is the chance for the enemy to drop a power-up
+    private bool _notifiedOfDestruction = false;
 
 
     void Awake()
@@ -65,8 +67,13 @@ public class Enemy : MonoBehaviour
                 health -= Main.GetWeaponDefinition(p.type).damageOnHit;
                 if(health <= 0)
                 {
+                    //Tell the Main singleton that this ship was destroyed
+                    if (!_notifiedOfDestruction)
+                    {
+                        Main.S.ShipDestroyed(this);
+                    }
+                    _notifiedOfDestruction = true;
                     Destroy(this.gameObject);
-
 
                     AddToScore();
                 }
