@@ -66,6 +66,9 @@ public class Enemy : MonoBehaviour
                 if(health <= 0)
                 {
                     Destroy(this.gameObject);
+
+
+                    AddToScore();
                 }
                 Destroy(otherGO);
                 break;
@@ -74,5 +77,10 @@ public class Enemy : MonoBehaviour
                 print("Enemy hit by non-projectileHero: " + otherGO.name);
                 break;
         }
+    }
+
+     public virtual void AddToScore()
+    {
+        ScoreManager.ADD_POINTS(3);
     }
 }

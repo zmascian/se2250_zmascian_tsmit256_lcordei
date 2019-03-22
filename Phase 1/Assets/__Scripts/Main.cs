@@ -80,6 +80,7 @@ public class Main : MonoBehaviour
     {
         //Reload _Scene_0 to restart the game
         SceneManager.LoadScene("_Scene_0");
+        ScoreManager.RESTART_SCORE();
     }
 
     //Static Function that gets a WeaponDefintion from the WEAP_DICT static prrotected field of the Main class

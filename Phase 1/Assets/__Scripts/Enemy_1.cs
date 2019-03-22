@@ -28,4 +28,9 @@ public class Enemy_1 : Enemy
         pos = tempPos;
        
     }
+
+    public override void AddToScore()
+    {
+        ScoreManager.ADD_POINTS(2);
+    }
 }

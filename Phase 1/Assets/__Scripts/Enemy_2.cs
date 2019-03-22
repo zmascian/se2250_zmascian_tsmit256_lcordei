@@ -47,4 +47,9 @@ public class Enemy_2 : Enemy
         p12 = (1 - u) * points[1] + u * points[2];
         pos = (1 - u) * p01 + u * p12;
     }
+
+    public override void AddToScore()
+    {
+        ScoreManager.ADD_POINTS(1);
+    }
 }
