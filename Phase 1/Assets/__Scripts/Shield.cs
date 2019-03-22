@@ -11,11 +11,11 @@ public class Shield : MonoBehaviour
     public int levelShown = 0;
 
     // This non-public variable will not appear in the Inspector
-    Material mat;
+    Material _mat;
 
     void Start()
     {
-        mat = GetComponent<Renderer>().material;
+        _mat = GetComponent<Renderer>().material;
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class Shield : MonoBehaviour
         {
             levelShown = currLevel;
             // Adjust the texture offset to show different shield level
-            mat.mainTextureOffset = new Vector2(0.2f * levelShown, 0);
+            _mat.mainTextureOffset = new Vector2(0.2f * levelShown, 0);
         }
         // Rotate the shield a bit every frame in a time-based way
         float rZ = -(rotationsPerSecond * Time.time * 360) % 360f;
