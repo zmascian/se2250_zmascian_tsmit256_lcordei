@@ -131,6 +131,8 @@ public class Weapon : MonoBehaviour
         return (p);
     }
 
+
+    // Used to switch weapons
    void Update()
     {
         if (Input.GetKeyDown("c"))
