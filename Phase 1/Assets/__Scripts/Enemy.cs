@@ -51,16 +51,28 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         GameObject otherGO = collision.gameObject;
-        //If otherGO is projectileHero, destroy it and destroy this enemy instance
-        if(otherGO.tag == "ProjectileHero")
+        switch (otherGO.tag)
         {
-            Destroy(otherGO);
-            Destroy(gameObject);
-        }
-        //If otherGO wasn't projectileHero, print the name of what was hit for debugging purposes
-        else
-        {
-            print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+            case "ProjectileHero":
+                Projectile p = otherGO.GetComponent<Projectile>();
+                //If offscreen, don't damage
+                if (!bndCheck.isOnScreen)
+                {
+                    Destroy(otherGO);
+                    break;
+                }
+                //Hurt this enemy and get damage amount from WEAP_DICT
+                health -= Main.GetWeaponDefinition(p.type).damageOnHit;
+                if(health <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
+                Destroy(otherGO);
+                break;
+
+            default:
+                print("Enemy hit by non-projectileHero: " + otherGO.name);
+                break;
         }
     }
 }
