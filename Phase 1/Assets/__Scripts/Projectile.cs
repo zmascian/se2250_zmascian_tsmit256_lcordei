@@ -27,6 +27,8 @@ public class Projectile : MonoBehaviour
     void Awake()
     {
         _bndCheck = GetComponent<BoundsCheck>();
+        rend = GetComponent<Renderer>();
+        rigid = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -37,6 +39,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    //Sets the type private field and colors this projectile to match the weaponDefinition
     public void SetType(WeaponType eType)
     {
         //Set the _type
