@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public enum WeaponType
 {
     none,       //no weapon
-    Simple,    //A simple blaster
+    simple,     //A simple blaster
     blaster,     //two shots simultaneously
     phaser,     //shots that move in waves
     missile,    //homing missiles
@@ -44,12 +44,7 @@ public class Main : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown("C"){
-            if (WEAP_DICT[]==)
-        }
-    }
+
 
     public void SpawnEnemy() {
         //Pick a random enemy prefab to instantiate

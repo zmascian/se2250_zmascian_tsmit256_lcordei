@@ -130,4 +130,15 @@ public class Weapon : MonoBehaviour
         lastShotTime = Time.time;
         return (p);
     }
+
+   void Update()
+    {
+        if (Input.GetKeyDown("c"))
+        {
+            if (type == WeaponType.simple)
+                type = WeaponType.blaster;
+            else
+                type = WeaponType.simple;
+        }
+    }
 }

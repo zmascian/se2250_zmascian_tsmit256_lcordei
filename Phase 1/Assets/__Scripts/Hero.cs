@@ -58,6 +58,7 @@ public class Hero : MonoBehaviour
         {
             fireDelegate();
         }
+
     }
 
     void OnTriggerEnter(Collider other)
