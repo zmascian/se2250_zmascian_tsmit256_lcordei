@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -159,14 +159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad7035c1ea3a464ca7a150269183524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  rollMult: -45
-  pitchMult: 30
+  speed: 0
+  rollMult: 0
+  pitchMult: 0
   gameRestartDelay: 2
-  projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
-    type: 3}
+  projectilePrefab: {fileID: 0}
   projectileSpeed: 40
-  _shieldLevel: 4
+  _shieldLevel: 1
 --- !u!4 &140796699
 Transform:
   m_ObjectHideFlags: 0
@@ -197,9 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0d22d61ec1ec24c841acb872edbca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  keepOnScreen: 1
-  isOnScreen: 1
+  radius: 0
+  keepOnScreen: 0
+  isOnScreen: 0
   camHeight: 0
   camWidth: 0
   offRight: 0
@@ -371,33 +370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f76ee4bd0c584dadaf1a52fe1f94ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabEnemies:
-  - {fileID: 6170703814734139683, guid: 7dc2bf7b5b44d6245a7b06db35d5cd5b, type: 3}
-  - {fileID: 1293300861272233655, guid: af43361555869174b9953942ec8afb90, type: 3}
-  - {fileID: 8890082329125732328, guid: 52eb05a6e0e5d68468c58fcc89ec04c6, type: 3}
-  enemySpawnPerSecond: 0.5
-  enemyDefaultPadding: 1.5
-  weaponDefinitions:
-  - type: 1
-    letter: B
-    color: {r: 1, g: 1, b: 1, a: 1}
-    projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
-      type: 3}
-    projectileColor: {r: 1, g: 1, b: 1, a: 1}
-    damageOnHit: 1
-    continousDamage: 0
-    delayBetweenShots: 0.2
-    velocity: 50
-  - type: 2
-    letter: S
-    color: {r: 0, g: 0.8666668, b: 1, a: 1}
-    projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
-      type: 3}
-    projectileColor: {r: 0, g: 0.86666673, b: 1, a: 1}
-    damageOnHit: 1
-    continousDamage: 0
-    delayBetweenShots: 0.4
-    velocity: 50
+  prefabEnemies: []
+  enemySpawnPerSecond: 0
+  enemyDefaultPadding: 0
+  weaponDefinitions: []
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,7 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationsPerSecond: 0.1
-  levelShown: 1
+  levelShown: 0
 --- !u!1 &1289590069
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +720,72 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3783582110221870792}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1734526536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1734526539}
+  - component: {fileID: 1734526538}
+  - component: {fileID: 1734526537}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1734526537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734526536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1734526538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734526536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1734526539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734526536}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3783582110221870792
 PrefabInstance:
   m_ObjectHideFlags: 0
