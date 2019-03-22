@@ -162,7 +162,8 @@ MonoBehaviour:
   speed: 30
   rollMult: -45
   pitchMult: 30
-  shieldLevel: 1
+  gameRestartDelay: 2
+  _shieldLevel: 4
 --- !u!4 &140796699
 Transform:
   m_ObjectHideFlags: 0
@@ -680,7 +681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationsPerSecond: 0.1
-  levelShown: 4
+  levelShown: 1
 --- !u!1 &1289590069
 GameObject:
   m_ObjectHideFlags: 0
