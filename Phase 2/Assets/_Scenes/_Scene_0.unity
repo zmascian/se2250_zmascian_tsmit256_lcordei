@@ -500,9 +500,15 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
+<<<<<<< HEAD
   - type: 7
     letter: W
     color: {r: 0, g: 0.8666668, b: 1, a: 1}
+=======
+  - type: 6
+    letter: S
+    color: {r: 1, g: 0.08828373, b: 0, a: 1}
+>>>>>>> Zack
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
       type: 3}
     projectileColor: {r: 0, g: 0.86666673, b: 1, a: 1}
@@ -510,12 +516,31 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
+<<<<<<< HEAD
   - type: 6
     letter: S
     color: {r: 0.14686072, g: 1, b: 0, a: 1}
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
       type: 3}
     projectileColor: {r: 0.14509805, g: 1, b: 0, a: 1}
+=======
+  - type: 8
+    letter: B
+    color: {r: 0.23504174, g: 1, b: 0, a: 1}
+    projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
+      type: 3}
+    projectileColor: {r: 0, g: 0.86666673, b: 1, a: 1}
+    damageOnHit: 1
+    continousDamage: 0
+    delayBetweenShots: 0.4
+    velocity: 50
+  - type: 7
+    letter: W
+    color: {r: 1, g: 0.8895351, b: 0, a: 1}
+    projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
+      type: 3}
+    projectileColor: {r: 0, g: 0.86666673, b: 1, a: 1}
+>>>>>>> Zack
     damageOnHit: 1
     continousDamage: 0
     delayBetweenShots: 0.4
