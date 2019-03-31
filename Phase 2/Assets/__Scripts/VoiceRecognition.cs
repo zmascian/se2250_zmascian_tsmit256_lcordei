@@ -39,7 +39,11 @@ public class VoiceRecognition : MonoBehaviour
 
     void DecreaseEnemySpawn()
     {
-        _main.enemySpawnPerSecond -= 0.5f;
+        //This ensures that there will always be at least a very small amount of enemies spawn
+        if (_main.enemySpawnPerSecond > 0.5f)
+            _main.enemySpawnPerSecond -= 0.5f;
+        else
+            _main.enemySpawnPerSecond = 0.1f;
     }
 
     void FireBulletWave()
