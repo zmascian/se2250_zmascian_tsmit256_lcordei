@@ -13,8 +13,10 @@ public class Enemy_3 : Enemy
 
     void Start()
     {
-        p0 = p1 = pos;
 
+        Weapon weapon = gameObject.GetComponent<Weapon>();
+        p0 = p1 = pos;
+        weapon.Fire();
         InitMovement();
     }
     void InitMovement()
@@ -30,6 +32,7 @@ public class Enemy_3 : Enemy
 
     public override void Move()
     {
+      
         float u = (Time.time - _timeStart) / _duration;
 
         if (u >= 1)
