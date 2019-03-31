@@ -13,7 +13,8 @@ public enum WeaponType
     missile,    //homing missiles
     laser,      //Damage over time
     shield,      //raise sheildLevel
-    warp        //Allows hero to break boundaries.
+    warp,        //Allows hero to break boundaries.
+    boost       //Increases Speed of hero
 }
 
 public class Main : MonoBehaviour
