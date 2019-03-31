@@ -10,11 +10,14 @@ public class VoiceRecognition : MonoBehaviour
     private KeywordRecognizer _keywordRecognizer;
     private Dictionary<string, Action> _actions = new Dictionary<string, Action>();
     private Main _main;
+    public GameObject weaponGO;
+    private Weapon _weapon;
 
     // Start is called before the first frame update
     void Start()
     {
         _main = GetComponent<Main>();
+        _weapon = weaponGO.GetComponent<Weapon>();
 
         _actions.Add("more enemies", IncreaseEnemySpawn);
         _actions.Add("less enemies", DecreaseEnemySpawn);
@@ -48,6 +51,10 @@ public class VoiceRecognition : MonoBehaviour
 
     void FireBulletWave()
     {
+        WeaponType temp = _weapon.type;
+        _weapon.type = WeaponType.sonic;
+        _weapon.Fire();
+        _weapon.type = temp;
 
     }
 }
