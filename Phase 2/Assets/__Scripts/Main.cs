@@ -12,7 +12,8 @@ public enum WeaponType
     phaser,     //shots that move in waves
     missile,    //homing missiles
     laser,      //Damage over time
-    shield      //raise sheildLevel
+    shield,      //raise sheildLevel
+    warp        //Allows hero to break boundaries.
 }
 
 public class Main : MonoBehaviour
@@ -25,8 +26,7 @@ public class Main : MonoBehaviour
     public float enemyDefaultPadding;
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
-    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.blaster, WeaponType.blaster,
-        WeaponType.simple, WeaponType.shield };
+    public WeaponType[] powerUpFrequency;
 
     private BoundsCheck bndCheck;
 

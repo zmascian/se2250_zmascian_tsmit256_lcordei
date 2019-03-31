@@ -10,6 +10,8 @@ public class Hero : MonoBehaviour
     public float gameRestartDelay = 2f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
+    private int _numOfWarp = 3;
+    private bool _possibleWarp = false;
 
     [Header("Set Dynamically")]
     [SerializeField]
@@ -27,6 +29,7 @@ public class Hero : MonoBehaviour
 
     void Awake()
     {
+
         if(S == null)
         {
             S = this;
@@ -35,7 +38,7 @@ public class Hero : MonoBehaviour
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
         }
-        
+
     }
 
     // Update is called once per frame
@@ -58,6 +61,40 @@ public class Hero : MonoBehaviour
         {
             fireDelegate();
         }
+        if (_possibleWarp == true && _numOfWarp > 0)
+        {
+            S.GetComponent<BoundsCheck>().keepOnScreen = false;
+            if (transform.position.y > S.GetComponent<BoundsCheck>().camHeight - S.GetComponent<BoundsCheck>().radius)
+            {
+                pos.y = S.GetComponent<BoundsCheck>().camHeight - S.GetComponent<BoundsCheck>().radius;
+                transform.position = pos;
+            }
+
+            if (transform.position.y < -S.GetComponent<BoundsCheck>().camHeight + S.GetComponent<BoundsCheck>().radius)
+            {
+                pos.y = -S.GetComponent<BoundsCheck>().camHeight + S.GetComponent<BoundsCheck>().radius;
+                transform.position = pos;
+            }
+
+            if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offLeft)
+            {
+                pos.x = (transform.position.x * -1) - 1;
+                transform.position = pos;
+                _numOfWarp--;
+            }
+            else if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offRight)
+            {
+                pos.x = (transform.position.x * -1) + 1;
+                transform.position = pos;
+                _numOfWarp--;
+            }
+        }
+        else {
+            _possibleWarp = false;
+            S.GetComponent<BoundsCheck>().keepOnScreen = true;
+
+        }
+
 
     }
 
@@ -91,10 +128,22 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go)
     {
         PowerUp pu = go.GetComponent<PowerUp>();
+        Vector3 pos = transform.position;
         switch (pu.type)
         {
-            //NEED TO ACTUALLY PUT SHIT INTO HERE !!!!! !! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! __ ! _!_! _! !_!_
+            case WeaponType.warp:
+                _possibleWarp = true;
+                _numOfWarp = 3;
+                break;
+
+            case WeaponType.shield:
+                shieldLevel += Random.Range(1, 4 - shieldLevel);
+                break;
+            default:
+                break;
         }
+        //NEED TO ACTUALLY PUT SHIT INTO HERE !!!!! !! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! __ ! _!_! _! !_!_
+
         pu.AbsorbedBy(this.gameObject);
     }
 
