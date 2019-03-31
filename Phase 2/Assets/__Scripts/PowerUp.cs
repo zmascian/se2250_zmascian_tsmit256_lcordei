@@ -19,9 +19,9 @@ public class PowerUp : MonoBehaviour
     public Vector3 rotPerSecond; //Euler rotation speed
     public float birthTime;
 
-    private Rigidbody rigid;
-    private BoundsCheck bndCheck;
-    private Renderer cubeRend;
+    private Rigidbody _rigid;
+    private BoundsCheck _bndCheck;
+    private Renderer _cubeRend;
 
     private void Awake()
     {
@@ -29,9 +29,9 @@ public class PowerUp : MonoBehaviour
         cube = transform.Find("Cube").gameObject;
         //Find the TextMesh and other components
         letter = GetComponent<TextMesh>();
-        rigid = GetComponent<Rigidbody>();
-        bndCheck = GetComponent<BoundsCheck>();
-        cubeRend = cube.GetComponent<Renderer>();
+        _rigid = GetComponent<Rigidbody>();
+        _bndCheck = GetComponent<BoundsCheck>();
+        _cubeRend = cube.GetComponent<Renderer>();
 
         //Set a random velocity
         Vector3 vel = Random.onUnitSphere; //Get Random XYZ velocity
@@ -41,7 +41,7 @@ public class PowerUp : MonoBehaviour
         vel.Normalize(); // Normalizing a Vector3 makes it length 1m
 
         vel *= Random.Range(driftMinMax.x, driftMinMax.y); //a
-        rigid.velocity = vel;
+        _rigid.velocity = vel;
 
         //Set the rotation of this GameObject to R:[0,0,0]
         transform.rotation = Quaternion.identity;
@@ -75,9 +75,9 @@ public class PowerUp : MonoBehaviour
 
         //Use u to determine the alpha value of the Cube & Letter 
         if(u>0) {
-            Color c = cubeRend.material.color;
+            Color c = _cubeRend.material.color;
             c.a = 1f - u;
-            cubeRend.material.color = c;
+            _cubeRend.material.color = c;
             //Fade the Letter too, just not as much
             c = letter.color;
             c.a = 1f - (u * 0.5f);
@@ -85,7 +85,7 @@ public class PowerUp : MonoBehaviour
 
         }
 
-        if (!bndCheck.isOnScreen) {
+        if (!_bndCheck.isOnScreen) {
             //If the PowerUp has drifted entirely off screen, destroy it
             Destroy(gameObject);
         }
@@ -95,7 +95,7 @@ public class PowerUp : MonoBehaviour
         //Grab the WeaponDefinition from Main
         WeaponDefinition def = Main.GetWeaponDefinition(wt);
         //Set the color of the Cube child
-        cubeRend.material.color = def.color;
+        _cubeRend.material.color = def.color;
         //letter.color = def.color; //We could colorize the letter too
         letter.text = def.letter; //Set the letter that is shown
         type = wt; //Finally actually set the type
