@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Hero : MonoBehaviour
 {
     static public Hero S;
 
-    public float speed, rollMult, pitchMult;
+    public float speed, rollMult, pitchMult, lengthOfSpeedIncrease;
     public float gameRestartDelay = 2f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
     private int _numOfWarp = 3;
-    private bool _possibleWarp = false;
+    private bool _possibleWarp, _speedIncreased = false;
+    private float _speedDuration;
 
     [Header("Set Dynamically")]
     [SerializeField]
@@ -30,7 +31,7 @@ public class Hero : MonoBehaviour
     void Awake()
     {
 
-        if(S == null)
+        if (S == null)
         {
             S = this;
         }
@@ -38,6 +39,7 @@ public class Hero : MonoBehaviour
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
         }
+        _speedDuration = lengthOfSpeedIncrease;
 
     }
 
@@ -89,9 +91,22 @@ public class Hero : MonoBehaviour
                 _numOfWarp--;
             }
         }
-        else {
+        else
+        {
             _possibleWarp = false;
             S.GetComponent<BoundsCheck>().keepOnScreen = true;
+
+        }
+
+        if (_speedIncreased && lengthOfSpeedIncrease > 0)
+        {
+            lengthOfSpeedIncrease -= Time.deltaTime;
+        }
+        else if (_speedIncreased)
+        {
+            lengthOfSpeedIncrease = _speedDuration;
+            speed = speed / 2;
+            _speedIncreased = false;
 
         }
 
@@ -115,7 +130,8 @@ public class Hero : MonoBehaviour
             shieldLevel--;      //... and Destroy the enemy
             Destroy(go);
         }
-        else if(go.tag == "PowerUp"){
+        else if (go.tag == "PowerUp")
+        {
             //If shield was triggered by power-up
             AbsorbPowerUp(go);
         }
@@ -138,6 +154,11 @@ public class Hero : MonoBehaviour
 
             case WeaponType.shield:
                 shieldLevel += Random.Range(1, 4 - shieldLevel);
+                break;
+            case WeaponType.boost:
+
+                speed *= 2;
+                _speedIncreased = true;
                 break;
             default:
                 break;

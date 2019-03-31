@@ -162,6 +162,7 @@ MonoBehaviour:
   speed: 30
   rollMult: -45
   pitchMult: 30
+  lengthOfSpeedIncrease: 5
   gameRestartDelay: 2
   projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
     type: 3}
@@ -502,7 +503,7 @@ MonoBehaviour:
     velocity: 50
   prefabPowerUp: {fileID: 8403625492973364549, guid: 3aac82f1270da4ec5a5f9c4709b6136f,
     type: 3}
-  powerUpFrequency: 0600000007000000
+  powerUpFrequency: 060000000700000008000000
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
