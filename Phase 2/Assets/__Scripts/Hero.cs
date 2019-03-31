@@ -13,6 +13,7 @@ public class Hero : MonoBehaviour
     private int _numOfWarp = 3;
     private bool _possibleWarp, _speedIncreased = false;
     private float _speedDuration;
+    private float _initSpeed;
 
     [Header("Set Dynamically")]
     [SerializeField]
@@ -40,6 +41,7 @@ public class Hero : MonoBehaviour
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
         }
         _speedDuration = lengthOfSpeedIncrease;
+        _initSpeed = speed;
 
     }
 
@@ -80,15 +82,17 @@ public class Hero : MonoBehaviour
 
             if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offLeft)
             {
-                pos.x = (transform.position.x * -1) - 1;
+                pos.x = (transform.position.x * -1) - 1.5f;
                 transform.position = pos;
                 _numOfWarp--;
+                ScoreManager.WARPS--;
             }
             else if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offRight)
             {
-                pos.x = (transform.position.x * -1) + 1;
+                pos.x = (transform.position.x * -1) + 1.5f;
                 transform.position = pos;
                 _numOfWarp--;
+                ScoreManager.WARPS--;
             }
         }
         else
@@ -150,15 +154,20 @@ public class Hero : MonoBehaviour
             case WeaponType.warp:
                 _possibleWarp = true;
                 _numOfWarp = 3;
+                ScoreManager.WARPS= 3;
                 break;
 
             case WeaponType.shield:
                 shieldLevel += Random.Range(1, 4 - shieldLevel);
                 break;
             case WeaponType.boost:
-
-                speed *= 2;
+                if (speed == _initSpeed)
+                {
+                    speed *= 2;
+                }
+                lengthOfSpeedIncrease = _speedDuration;
                 _speedIncreased = true;
+
                 break;
             default:
                 break;
