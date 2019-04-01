@@ -107,6 +107,22 @@ public class Weapon : MonoBehaviour
                 p.transform.rotation = Quaternion.AngleAxis(-30, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
                 break;
+
+            case WeaponType.sonic: //Makes 31 bullets
+
+                p = MakeProjectile();   //Middle Proj.
+                p.rigid.velocity = vel;
+
+                for (int i = 0; i < 15; i++) //loop for each of the 15 symetric bullets on either side of middle bullet
+                {
+                    p = MakeProjectile();   //Right Proj.
+                    p.transform.rotation = Quaternion.AngleAxis(2.5f * i, Vector3.back);
+                    p.rigid.velocity = p.transform.rotation * vel;
+                    p = MakeProjectile();   //Left Proj.
+                    p.transform.rotation = Quaternion.AngleAxis(-2.5f * i, Vector3.back);
+                    p.rigid.velocity = p.transform.rotation * vel;
+                }
+                break;
         }
     }
 
