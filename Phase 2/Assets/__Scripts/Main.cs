@@ -9,9 +9,6 @@ public enum WeaponType
     none,       //no weapon
     simple,     //A simple blaster
     blaster,     //two shots simultaneously
-    phaser,     //shots that move in waves
-    missile,    //homing missiles
-    laser,      //Damage over time
     shield,      //raise sheildLevel
     warp,        //Allows hero to break boundaries.
     boost,       //Increases Speed of hero
