@@ -15,7 +15,8 @@ public enum WeaponType
     shield,      //raise sheildLevel
     warp,        //Allows hero to break boundaries.
     boost,       //Increases Speed of hero
-    bomb           //Destorys hero Entry 
+    bomb,           //Destorys hero Entry 
+    sonic           //shoots 31 bullets
 }
 
 public class Main : MonoBehaviour
