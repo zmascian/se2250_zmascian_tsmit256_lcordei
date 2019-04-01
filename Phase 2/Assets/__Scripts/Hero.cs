@@ -125,7 +125,12 @@ public class Hero : MonoBehaviour
         }
 
         _lastTriggerGo = go;
-        if (go.tag == "Enemy") //if the shield was triggered by an enemy
+        if (go.tag == "_ProjectileAnchor") //if the shield was triggered by an enemy
+        {                       //Decrease the level of the shield by 1
+            shieldLevel--;      //... and Destroy the enemy
+            Destroy(go.);
+        }
+        else if (go.tag == "Enemy") //if the shield was triggered by an enemy
         {                       //Decrease the level of the shield by 1
             shieldLevel--;      //... and Destroy the enemy
             Destroy(go);

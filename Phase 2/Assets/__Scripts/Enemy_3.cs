@@ -8,15 +8,14 @@ public class Enemy_3 : Enemy
     private float _timeStart;
     private float _direction;
     private float _duration = 4;
+    private Weapon _weapon;
 
 
-
-    void Start()
+void Start()
     {
-
-        Weapon weapon = gameObject.GetComponent<Weapon>();
+        _weapon = gameObject.GetComponentInChildren<Weapon>();
         p0 = p1 = pos;
-        weapon.Fire();
+        _weapon.SetType(WeaponType.simple);
         InitMovement();
     }
     void InitMovement()
@@ -32,6 +31,8 @@ public class Enemy_3 : Enemy
 
     public override void Move()
     {
+
+        _weapon.Fire();
       
         float u = (Time.time - _timeStart) / _duration;
 
@@ -44,6 +45,8 @@ public class Enemy_3 : Enemy
         u = 1 - Mathf.Pow(1 - u, 2);
         pos = (1 - u) * p0 + u * p1;
     }
+
+    
 
     public override void AddToScore()
     {

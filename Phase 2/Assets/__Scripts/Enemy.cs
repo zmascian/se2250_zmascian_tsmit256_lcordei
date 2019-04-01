@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     protected BoundsCheck bndCheck;
     public float powerUpDropChance = 1f; //this is the chance for the enemy to drop a power-up
     private bool _notifiedOfDestruction = false;
-
+   
 
     void Awake()
     {
@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame.
     void Update()
     {
+ 
         Move();   
 
         if( bndCheck != null && (bndCheck.offDown || bndCheck.offLeft|| bndCheck.offRight))
