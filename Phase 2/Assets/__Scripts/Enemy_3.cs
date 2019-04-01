@@ -9,13 +9,14 @@ public class Enemy_3 : Enemy
     private float _direction;
     private float _duration = 4;
     private Weapon _weapon;
+    public float gameRestartDelay = 2f;
 
 
-void Start()
+
+    void Start()
     {
         _weapon = gameObject.GetComponentInChildren<Weapon>();
         p0 = p1 = pos;
-        _weapon.SetType(WeaponType.simple);
         InitMovement();
     }
     void InitMovement()
@@ -31,7 +32,7 @@ void Start()
 
     public override void Move()
     {
-
+        
         _weapon.Fire();
       
         float u = (Time.time - _timeStart) / _duration;
@@ -46,7 +47,37 @@ void Start()
         pos = (1 - u) * p0 + u * p1;
     }
 
-    
+    public override void OnCollisionEnter(Collision collision)
+    {
+        GameObject otherGO = collision.gameObject;
+        switch (otherGO.tag)
+        {
+            case "ProjectileHero":
+                Projectile p = otherGO.GetComponent<Projectile>();
+                //If offscreen, don't damage
+                if (!bndCheck.isOnScreen)
+                {
+                    Destroy(otherGO);
+                    break;
+                }
+                //Hurt this enemy and get damage amount from WEAP_DICT
+                health -= Main.GetWeaponDefinition(p.type).damageOnHit;
+                if (health <= 0)
+                {
+                    Destroy(this.gameObject);
+                    AddToScore();
+                    
+                }
+                Destroy(otherGO);
+                break;
+
+            default:
+                print("Enemy hit by non-projectileHero: " + otherGO.name);
+                break;
+        }
+    }
+
+
 
     public override void AddToScore()
     {

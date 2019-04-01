@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         pos = tempPos;
     }
 
-    void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         GameObject otherGO = collision.gameObject;
         switch (otherGO.tag)

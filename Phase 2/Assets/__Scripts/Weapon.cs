@@ -72,6 +72,8 @@ public class Weapon : MonoBehaviour
         }
         def = Main.GetWeaponDefinition(_type);
         collarRend.material.color = def.color;
+        if (gameObject.transform.root.tag == "Enemy")
+            def.delayBetweenShots = 1f;
         lastShotTime = 0; //You can fire immediately after _type is set
     }
 
@@ -135,7 +137,7 @@ public class Weapon : MonoBehaviour
     // Used to switch weapons
    void Update()
     {
-        if (Input.GetKeyDown("c"))
+        if (Input.GetKeyDown("c") && gameObject.transform.root.tag == "Hero")
         {
             if (type == WeaponType.simple)
                 type = WeaponType.blaster;

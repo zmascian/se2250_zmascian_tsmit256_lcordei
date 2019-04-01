@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 534669906}
   - component: {fileID: 534669907}
   - component: {fileID: 534669908}
+  - component: {fileID: 534669909}
   m_Layer: 0
   m_Name: _MainCamera
   m_TagString: MainCamera
@@ -473,11 +474,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f76ee4bd0c584dadaf1a52fe1f94ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabBoss: {fileID: 3357657987310335844, guid: 0706c8729fafb3c4f86cb0709c01917a,
+    type: 3}
   prefabEnemies:
   - {fileID: 6170703814734139683, guid: 7dc2bf7b5b44d6245a7b06db35d5cd5b, type: 3}
   - {fileID: 1293300861272233655, guid: af43361555869174b9953942ec8afb90, type: 3}
   - {fileID: 8890082329125732328, guid: 52eb05a6e0e5d68468c58fcc89ec04c6, type: 3}
-  - {fileID: 3357657987310335844, guid: 0706c8729fafb3c4f86cb0709c01917a, type: 3}
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
   weaponDefinitions:
@@ -539,6 +541,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1879757652}
   highscoreText: {fileID: 876883651}
+--- !u!114 &534669909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce35e02c8d7976047888d1eb34938099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabBoss: {fileID: 3357657987310335844, guid: 0706c8729fafb3c4f86cb0709c01917a,
+    type: 3}
 --- !u!1 &564085560
 GameObject:
   m_ObjectHideFlags: 0

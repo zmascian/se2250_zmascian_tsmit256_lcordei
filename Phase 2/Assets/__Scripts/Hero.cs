@@ -115,6 +115,7 @@ public class Hero : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        GameObject otherGO = other.gameObject;
         Transform rootT = other.gameObject.transform.root;
         GameObject go = rootT.gameObject;
         // print("Triggered: " + go.name);
@@ -125,10 +126,16 @@ public class Hero : MonoBehaviour
         }
 
         _lastTriggerGo = go;
-        if (go.tag == "_ProjectileAnchor") //if the shield was triggered by an enemy
+        if (other.gameObject.tag == "ProjectileEnemy") //if the shield was triggered by an enemy
         {                       //Decrease the level of the shield by 1
             shieldLevel--;      //... and Destroy the enemy
-            Destroy(go.);
+            Destroy(other);
+            _lastTriggerGo = other.gameObject;
+        }
+        else if (go.tag == "EnemyBoss") //if the shield was triggered by an enemy
+        {
+            shieldLevel = -1;      
+            Destroy(go);//... and Destroy the enemy
         }
         else if (go.tag == "Enemy") //if the shield was triggered by an enemy
         {                       //Decrease the level of the shield by 1
