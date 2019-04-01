@@ -11,6 +11,7 @@ public class BossLevel : MonoBehaviour
     private GameObject _boss;
     private bool _levelOverOccured = false;
     private int _pastLevelScore = 0;
+    private float _prevEnemySpawnRate;
     private void Awake()
     {
         
@@ -37,12 +38,14 @@ public class BossLevel : MonoBehaviour
         }
     }
     public void SpawnBoss()
-    { 
+    {
+        
          _bossspawned = true;
         _levelOverOccured = false;
          _boss = Instantiate<GameObject>(prefabBoss);
-        
-         main.enemySpawnPerSecond = 0f;
+
+        _prevEnemySpawnRate = main.enemySpawnPerSecond;
+        main.enemySpawnPerSecond = 0f;
         
         //Position enemy above the screen with random x position
         float enemyPadding = 1.5f;
@@ -63,7 +66,7 @@ public class BossLevel : MonoBehaviour
 
     public  void LevelOver()
     {
-        main.enemySpawnPerSecond = 1f;
+        main.enemySpawnPerSecond = _prevEnemySpawnRate;
         main.SpawnEnemy();
     }
 }

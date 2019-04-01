@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 534669907}
   - component: {fileID: 534669908}
   - component: {fileID: 534669909}
+  - component: {fileID: 534669910}
   m_Layer: 0
   m_Name: _MainCamera
   m_TagString: MainCamera
@@ -560,6 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f76ee4bd0c584dadaf1a52fe1f94ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabBoss: {fileID: 0}
   prefabEnemies:
   - {fileID: 6170703814734139683, guid: 7dc2bf7b5b44d6245a7b06db35d5cd5b, type: 3}
   - {fileID: 1293300861272233655, guid: af43361555869174b9953942ec8afb90, type: 3}
@@ -587,7 +589,7 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
-  - type: 6
+  - type: 3
     letter: S
     color: {r: 1, g: 0.08828373, b: 0, a: 1}
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
@@ -597,7 +599,7 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
-  - type: 8
+  - type: 5
     letter: B
     color: {r: 0.23504174, g: 1, b: 0, a: 1}
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
@@ -607,7 +609,7 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
-  - type: 7
+  - type: 4
     letter: W
     color: {r: 1, g: 0.8895351, b: 0, a: 1}
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
@@ -617,7 +619,7 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
-  - type: 9
+  - type: 6
     letter: '!'
     color: {r: 0, g: 0.167027, b: 1, a: 1}
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
@@ -627,7 +629,7 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
-  - type: 10
+  - type: 7
     letter: A
     color: {r: 0.9622642, g: 0.3709264, b: 0.040850822, a: 1}
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
@@ -639,7 +641,7 @@ MonoBehaviour:
     velocity: 50
   prefabPowerUp: {fileID: 8403625492973364549, guid: 3aac82f1270da4ec5a5f9c4709b6136f,
     type: 3}
-  powerUpFrequency: 06000000070000000800000009000000
+  powerUpFrequency: 06000000040000000300000005000000
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,6 +691,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponGO: {fileID: 1047521432}
+--- !u!114 &534669910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce35e02c8d7976047888d1eb34938099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabBoss: {fileID: 3357657987310335844, guid: 0706c8729fafb3c4f86cb0709c01917a,
+    type: 3}
 --- !u!1 &564085560
 GameObject:
   m_ObjectHideFlags: 0
