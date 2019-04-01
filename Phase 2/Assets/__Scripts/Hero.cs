@@ -14,6 +14,10 @@ public class Hero : MonoBehaviour
     private bool _possibleWarp, _speedIncreased = false;
     private float _speedDuration;
     private float _initSpeed;
+    public Color red, green, gold, white, none;
+    private Color[] availableSkins = new Color[4];
+    public int i = 0;
+
 
     [Header("Set Dynamically")]
     [SerializeField]
@@ -32,6 +36,8 @@ public class Hero : MonoBehaviour
     void Awake()
     {
 
+
+
         if (S == null)
         {
             S = this;
@@ -48,6 +54,7 @@ public class Hero : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float xAxis = Input.GetAxis("Horizontal");
         float yAxis = Input.GetAxis("Vertical");
 
@@ -113,6 +120,8 @@ public class Hero : MonoBehaviour
             _speedIncreased = false;
 
         }
+        unlockSkins();
+        changeSkin();
 
 
     }
@@ -194,6 +203,49 @@ public class Hero : MonoBehaviour
                 //Tell Main.S to restart the game after a delay
                 Main.S.DelayedRestart(gameRestartDelay);
             }
+        }
+    }
+
+    private void unlockSkins(){
+        availableSkins[0] = white;
+        if(ScoreManager._HIGH_SCORE>=10)
+        {
+            availableSkins[1] = red;
+            if (ScoreManager._HIGH_SCORE >= 25){
+                availableSkins[2] = green;
+                if (ScoreManager._HIGH_SCORE >= 50){
+                    availableSkins[3] = gold;
+                }
+                else
+                {
+                    availableSkins[3] = none;
+                }
+            }
+            else
+            {
+                availableSkins[2] = none;
+            }
+        }
+        else{
+            availableSkins[1] = none;
+        }
+
+    }
+
+    public void changeSkin(){
+
+        if(Input.GetKeyUp(KeyCode.X)){
+            if(i>=3 || availableSkins[i+1] == none)
+            {
+                i = 0;
+                transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color = availableSkins[i];
+            }
+            else{
+
+                transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color = availableSkins[i+1];
+                i++;
+            }
+
         }
     }
 }
