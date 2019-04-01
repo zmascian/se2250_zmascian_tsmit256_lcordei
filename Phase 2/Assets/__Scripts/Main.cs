@@ -21,12 +21,14 @@ public class Main : MonoBehaviour
     public static Main S; // A singleton for Main
     static Dictionary<WeaponType, WeaponDefinition> WEAP_DICT;
 
+    public GameObject prefabBoss;
     public GameObject[] prefabEnemies;
     public float enemySpawnPerSecond;
     public float enemyDefaultPadding;
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
     public WeaponType[] powerUpFrequency;
+    
 
     private BoundsCheck bndCheck;
 
@@ -65,9 +67,11 @@ public class Main : MonoBehaviour
 
 
     public void SpawnEnemy() {
-        //Pick a random enemy prefab to instantiate
-        int ndx = Random.Range(0, prefabEnemies.Length);
-        GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
+         
+       
+         int ndx = Random.Range(0, prefabEnemies.Length);
+         GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
+      
 
         //Position enemy above the screen with random x position
         float enemyPadding = enemyDefaultPadding;
@@ -83,6 +87,7 @@ public class Main : MonoBehaviour
         pos.y = bndCheck.camHeight + enemyPadding;
         go.transform.position = pos;
 
+        
         //Invoke SpawnEnemy() again
         Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
 
