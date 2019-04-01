@@ -16,7 +16,9 @@ public class Hero : MonoBehaviour
     private float _initSpeed;
     public Color red, green, gold, white, none;
     private Color[] availableSkins = new Color[4];
-    public int i = 0;
+    public int ndx = 0; //index of availableSkins array
+    private float _numOfColChanges = 1.0f; //Number of times the user changes their skin
+
 
 
     [Header("Set Dynamically")]
@@ -89,14 +91,14 @@ public class Hero : MonoBehaviour
 
             if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offLeft)
             {
-                pos.x = (transform.position.x * -1) - 1.5f;
+                pos.x = (transform.position.x * -1) - 2.0f;
                 transform.position = pos;
                 _numOfWarp--;
                 ScoreManager.WARPS--;
             }
             else if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offRight)
             {
-                pos.x = (transform.position.x * -1) + 1.5f;
+                pos.x = (transform.position.x * -1) + 2.0f;
                 transform.position = pos;
                 _numOfWarp--;
                 ScoreManager.WARPS--;
@@ -178,10 +180,13 @@ public class Hero : MonoBehaviour
                 _speedIncreased = true;
 
                 break;
+            case WeaponType.bomb:
+                shieldLevel = -1;
+                break;
             default:
                 break;
         }
-        //NEED TO ACTUALLY PUT SHIT INTO HERE !!!!! !! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! __ ! _!_! _! !_!_
+
 
         pu.AbsorbedBy(this.gameObject);
     }
@@ -208,12 +213,12 @@ public class Hero : MonoBehaviour
 
     private void unlockSkins(){
         availableSkins[0] = white;
-        if(ScoreManager._HIGH_SCORE>=10)
+        if(ScoreManager._HIGH_SCORE>=50)
         {
             availableSkins[1] = red;
-            if (ScoreManager._HIGH_SCORE >= 25){
+            if (ScoreManager._HIGH_SCORE >= 200){
                 availableSkins[2] = green;
-                if (ScoreManager._HIGH_SCORE >= 50){
+                if (ScoreManager._HIGH_SCORE >= 500){
                     availableSkins[3] = gold;
                 }
                 else
@@ -234,16 +239,44 @@ public class Hero : MonoBehaviour
 
     public void changeSkin(){
 
-        if(Input.GetKeyUp(KeyCode.X)){
-            if(i>=3 || availableSkins[i+1] == none)
+
+
+        if (Input.GetKeyUp(KeyCode.X)&& !_speedIncreased){
+
+            if (ndx>=3 || availableSkins[ndx+1] == none)
             {
-                i = 0;
-                transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color = availableSkins[i];
+                ndx = 0;
+                transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color = availableSkins[ndx];
             }
             else{
 
-                transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color = availableSkins[i+1];
-                i++;
+                transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color = availableSkins[ndx+1];
+                ndx++;
+            }
+            if(transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color == red){
+                _numOfColChanges *= 1.2f;
+                speed *= 1.2f;
+                _initSpeed *= 1.2f;
+
+            }
+            else if(transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color == green) {
+                _numOfColChanges *= 1.2f;
+                speed *= 1.2f;
+                _initSpeed *= 1.2f;
+
+            }
+            else if (transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color == gold)
+            {
+                _numOfColChanges *= 1.2f;
+                speed *= 1.2f;
+                _initSpeed *= 1.2f;
+            }
+            else if (transform.Find("Wing").gameObject.GetComponent<Renderer>().material.color == white)
+            {
+                speed = speed/_numOfColChanges;
+                _initSpeed = _initSpeed / _numOfColChanges;
+                _numOfColChanges = 1.0f;
+
             }
 
         }

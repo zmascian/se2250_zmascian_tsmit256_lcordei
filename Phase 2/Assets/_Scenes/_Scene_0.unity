@@ -172,7 +172,7 @@ MonoBehaviour:
   gold: {r: 0.8117647, g: 0.70980394, b: 0, a: 0}
   white: {r: 1, g: 1, b: 1, a: 0}
   none: {r: 0, g: 0, b: 0, a: 0}
-  i: 0
+  ndx: 0
   _shieldLevel: 4
 --- !u!4 &140796699
 Transform:
@@ -563,7 +563,7 @@ MonoBehaviour:
   - {fileID: 6170703814734139683, guid: 7dc2bf7b5b44d6245a7b06db35d5cd5b, type: 3}
   - {fileID: 1293300861272233655, guid: af43361555869174b9953942ec8afb90, type: 3}
   - {fileID: 8890082329125732328, guid: 52eb05a6e0e5d68468c58fcc89ec04c6, type: 3}
-  enemySpawnPerSecond: 0.5
+  enemySpawnPerSecond: 3
   enemyDefaultPadding: 1.5
   weaponDefinitions:
   - type: 1
@@ -616,9 +616,19 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
+  - type: 9
+    letter: '!'
+    color: {r: 0, g: 0.167027, b: 1, a: 1}
+    projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
+      type: 3}
+    projectileColor: {r: 0, g: 0.86666673, b: 1, a: 1}
+    damageOnHit: 1
+    continousDamage: 0
+    delayBetweenShots: 0.4
+    velocity: 50
   prefabPowerUp: {fileID: 8403625492973364549, guid: 3aac82f1270da4ec5a5f9c4709b6136f,
     type: 3}
-  powerUpFrequency: 060000000700000008000000
+  powerUpFrequency: 06000000070000000800000009000000
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0

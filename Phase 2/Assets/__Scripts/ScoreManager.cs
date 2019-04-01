@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
 
         scoreText.text = "Score: "+ SCORE.ToString();
         highscoreText.text= "Highscore: " + _HIGH_SCORE.ToString();
-        numWarps.text = "Warps: " + _warps.ToString();
+        numWarps.text = "";
 
       
     }
@@ -76,7 +76,13 @@ public class ScoreManager : MonoBehaviour
     {
         get { return S._warps; }
         set { S._warps = value;
-            S.numWarps.text = "Warps: " + S._warps.ToString();
+            if (S._warps > 0)
+            {
+                S.numWarps.text = "Warps: " + S._warps.ToString();
+            }
+            else{
+                S.numWarps.text = "";
+            }
         }
     }
 

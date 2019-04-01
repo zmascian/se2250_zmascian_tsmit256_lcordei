@@ -14,7 +14,8 @@ public enum WeaponType
     laser,      //Damage over time
     shield,      //raise sheildLevel
     warp,        //Allows hero to break boundaries.
-    boost       //Increases Speed of hero
+    boost,       //Increases Speed of hero
+    bomb           //Destorys hero Entry 
 }
 
 public class Main : MonoBehaviour
