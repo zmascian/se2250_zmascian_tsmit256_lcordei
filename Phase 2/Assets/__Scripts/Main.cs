@@ -16,6 +16,15 @@ public enum WeaponType
     sonic           //shoots 31 bullets
 }
 
+public enum Sounds
+{
+    none,       //no weapon
+    duringGame,      
+    bossSound,
+    warpSound,
+    boostSound
+}
+
 public class Main : MonoBehaviour
 {
     public static Main S; // A singleton for Main
