@@ -74,41 +74,16 @@ public class Hero : MonoBehaviour
         {
             fireDelegate();
         }
-        if (_possibleWarp == true && _numOfWarp > 0)
+
+
+        if (S != null && _possibleWarp == true && _numOfWarp > 0)
         {
-            S.GetComponent<BoundsCheck>().keepOnScreen = false;
-            if (transform.position.y > S.GetComponent<BoundsCheck>().camHeight - S.GetComponent<BoundsCheck>().radius)
-            {
-                pos.y = S.GetComponent<BoundsCheck>().camHeight - S.GetComponent<BoundsCheck>().radius;
-                transform.position = pos;
-            }
-
-            if (transform.position.y < -S.GetComponent<BoundsCheck>().camHeight + S.GetComponent<BoundsCheck>().radius)
-            {
-                pos.y = -S.GetComponent<BoundsCheck>().camHeight + S.GetComponent<BoundsCheck>().radius;
-                transform.position = pos;
-            }
-
-            if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offLeft)
-            {
-                pos.x = (transform.position.x * -1) - 2.0f;
-                transform.position = pos;
-                _numOfWarp--;
-                ScoreManager.WARPS--;
-            }
-            else if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offRight)
-            {
-                pos.x = (transform.position.x * -1) + 2.0f;
-                transform.position = pos;
-                _numOfWarp--;
-                ScoreManager.WARPS--;
-            }
+            Warp(pos);
         }
         else
         {
             _possibleWarp = false;
             S.GetComponent<BoundsCheck>().keepOnScreen = true;
-
         }
 
         if (_speedIncreased && lengthOfSpeedIncrease > 0)
@@ -124,8 +99,7 @@ public class Hero : MonoBehaviour
         }
         unlockSkins();
         changeSkin();
-
-
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -141,7 +115,7 @@ public class Hero : MonoBehaviour
         }
 
         _lastTriggerGo = go;
-        if (other.gameObject.tag == "ProjectileEnemy") //if the shield was triggered by an enemy
+        if (other.gameObject.tag == "ProjectileEnemy") //if the shield was triggered by an enemy projectile
         {                       //Decrease the level of the shield by 1
             shieldLevel--;      //... and Destroy the enemy
             Destroy(other);
@@ -291,6 +265,37 @@ public class Hero : MonoBehaviour
 
             }
 
+        }
+    }
+
+    void Warp(Vector3 pos)
+    {
+        S.GetComponent<BoundsCheck>().keepOnScreen = false;
+        if (transform.position.y > S.GetComponent<BoundsCheck>().camHeight - S.GetComponent<BoundsCheck>().radius)
+        {
+            pos.y = S.GetComponent<BoundsCheck>().camHeight - S.GetComponent<BoundsCheck>().radius;
+            transform.position = pos;
+        }
+
+        if (transform.position.y < -S.GetComponent<BoundsCheck>().camHeight + S.GetComponent<BoundsCheck>().radius)
+        {
+            pos.y = -S.GetComponent<BoundsCheck>().camHeight + S.GetComponent<BoundsCheck>().radius;
+            transform.position = pos;
+        }
+
+        if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offLeft)
+        {
+            pos.x = S.GetComponent<BoundsCheck>().camWidth - S.GetComponent<BoundsCheck>().radius;
+            transform.position = pos;
+            _numOfWarp--;
+            ScoreManager.WARPS--;
+        }
+        else if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offRight)
+        {
+            pos.x = -S.GetComponent<BoundsCheck>().camWidth + S.GetComponent<BoundsCheck>().radius;
+            transform.position = pos;
+            _numOfWarp--;
+            ScoreManager.WARPS--;
         }
     }
 }

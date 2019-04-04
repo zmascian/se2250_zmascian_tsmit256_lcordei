@@ -101,10 +101,8 @@ public class PowerUp : MonoBehaviour
         type = wt; //Finally actually set the type
     }
 
-    public void AbsorbedBy(GameObject target){
-        //This function is called by the Hero class when PowerUp is collected
-        //We could tween into the target and shrink in size,
-        // but for now, just destroy this.gameObject
+    public void AbsorbedBy(GameObject target = null){
+        //This function is called by the Hero and BuddyShip class when PowerUp is collected
         Destroy(this.gameObject);
     }
 }

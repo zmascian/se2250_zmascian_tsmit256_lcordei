@@ -19,10 +19,18 @@ public class VoiceRecognition : MonoBehaviour
         _main = GetComponent<Main>();
         _weapon = weaponGO.GetComponent<Weapon>();
 
+        //Different phrases all increase enemy spawn rate
         _actions.Add("more enemies", IncreaseEnemySpawn);
+        _actions.Add("harder", IncreaseEnemySpawn);
+
+        //Different phrases all decrease enemy spawn rate
         _actions.Add("less enemies", DecreaseEnemySpawn);
         _actions.Add("fewer enemies", DecreaseEnemySpawn);
+        _actions.Add("easier", DecreaseEnemySpawn);
+
+        //Different phrases all cause fire wave of bullets
         _actions.Add("Jose help", FireBulletWave);
+        _actions.Add("help", FireBulletWave);
 
         _keywordRecognizer = new KeywordRecognizer(_actions.Keys.ToArray());
         _keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
