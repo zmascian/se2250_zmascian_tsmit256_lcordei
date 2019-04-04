@@ -12,7 +12,7 @@ public class BuddyShip : MonoBehaviour
     public float speed, rollMult, pitchMult;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
-    private bool _possibleWarp, _speedIncreased = false;
+    private bool _possibleWarp;
     private float _speedDuration;
     private float _initSpeed;
     private Weapon _weapon;
