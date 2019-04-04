@@ -11,6 +11,7 @@ TagManager:
   - PowerUp
   - EnemyBoss
   - BuddyShip
+  - ProjectileBuddy
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - PowerUp
   - EnemyBoss
   - BuddyShip
-  - 
+  - ProjectileBuddy
   - 
   - 
   - 

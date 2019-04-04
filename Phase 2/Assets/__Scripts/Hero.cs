@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Hero : MonoBehaviour
 {
-    static public Hero S;
+    static public Hero S; //Singleton for Hero Script
 
     public float speed, rollMult, pitchMult, lengthOfSpeedIncrease;
     public float gameRestartDelay = 2f;
@@ -14,7 +14,7 @@ public class Hero : MonoBehaviour
     private bool _possibleWarp, _speedIncreased = false;
     private float _speedDuration;
     private float _initSpeed;
-    public Color red, green, gold, white, none;
+    public Color red, green, gold, white, none; //colours to be used to change hero ship wings
     private Color[] availableSkins = new Color[4];
     public int ndx = 0; //index of availableSkins array
     private float _numOfColChanges = 1.0f; //Number of times the user changes their skin
@@ -37,9 +37,6 @@ public class Hero : MonoBehaviour
 
     void Awake()
     {
-
-
-
         if (S == null)
         {
             S = this;
@@ -75,12 +72,12 @@ public class Hero : MonoBehaviour
             fireDelegate();
         }
 
-
+        //If it is possible to warp, then provide ability to warp
         if (S != null && _possibleWarp == true && _numOfWarp > 0)
         {
             Warp(pos);
         }
-        else
+        else //otherwise, ensure that hero does not warp
         {
             _possibleWarp = false;
             S.GetComponent<BoundsCheck>().keepOnScreen = true;
@@ -88,9 +85,9 @@ public class Hero : MonoBehaviour
 
         if (_speedIncreased && lengthOfSpeedIncrease > 0)
         {
-            lengthOfSpeedIncrease -= Time.deltaTime;
+            lengthOfSpeedIncrease -= Time.deltaTime; //decrease length of boost if it is currently boosted
         }
-        else if (_speedIncreased)
+        else if (_speedIncreased) //If it is boosted but time is up, return speed to regular
         {
             lengthOfSpeedIncrease = _speedDuration;
             speed = speed / 2;
@@ -136,10 +133,6 @@ public class Hero : MonoBehaviour
             //If shield was triggered by power-up
             AbsorbPowerUp(go);
         }
-        else
-        {
-            print("Triggered by non-Enemy: " + go.name);
-        }
     }
 
     public void AbsorbPowerUp(GameObject go)
@@ -148,15 +141,19 @@ public class Hero : MonoBehaviour
         Vector3 pos = transform.position;
         switch (pu.type)
         {
+            //If powerup is warp, set numOfPowerups to be 3 on screen and for variable and let possibleWarp occur
             case WeaponType.warp:
                 _possibleWarp = true;
                 _numOfWarp = 3;
                 ScoreManager.WARPS= 3;
                 break;
 
+            //If powerup is shield, add a random level of shield between 1 and the max possible addition
             case WeaponType.shield:
                 shieldLevel += Random.Range(1, 4 - shieldLevel);
                 break;
+
+            //If powerup is boost, multiply speed by two and set the speed duration
             case WeaponType.boost:
                 if (speed == _initSpeed)
                 {
@@ -164,16 +161,15 @@ public class Hero : MonoBehaviour
                 }
                 lengthOfSpeedIncrease = _speedDuration;
                 _speedIncreased = true;
-
                 break;
+            
+             //If powerup is bomb, completely destroy the hero
             case WeaponType.bomb:
                 shieldLevel = -1;
                 break;
             default:
                 break;
         }
-
-
         pu.AbsorbedBy(this.gameObject);
     }
 
@@ -197,7 +193,7 @@ public class Hero : MonoBehaviour
         }
     }
 
-    private void unlockSkins(){
+    void unlockSkins(){
         availableSkins[0] = white;
         if(ScoreManager._HIGH_SCORE>=50)
         {
@@ -271,18 +267,22 @@ public class Hero : MonoBehaviour
     void Warp(Vector3 pos)
     {
         S.GetComponent<BoundsCheck>().keepOnScreen = false;
+
+        //Although keepOnScreen is false, this will still keep buddyShip on screen vertically
         if (transform.position.y > S.GetComponent<BoundsCheck>().camHeight - S.GetComponent<BoundsCheck>().radius)
         {
             pos.y = S.GetComponent<BoundsCheck>().camHeight - S.GetComponent<BoundsCheck>().radius;
             transform.position = pos;
         }
 
+        //Although keepOnScreen is false, this will still keep buddyShip on screen vertically
         if (transform.position.y < -S.GetComponent<BoundsCheck>().camHeight + S.GetComponent<BoundsCheck>().radius)
         {
             pos.y = -S.GetComponent<BoundsCheck>().camHeight + S.GetComponent<BoundsCheck>().radius;
             transform.position = pos;
         }
 
+        //If it went off left, then put hero on the other side of screen
         if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offLeft)
         {
             pos.x = S.GetComponent<BoundsCheck>().camWidth - S.GetComponent<BoundsCheck>().radius;
@@ -290,6 +290,7 @@ public class Hero : MonoBehaviour
             _numOfWarp--;
             ScoreManager.WARPS--;
         }
+        //If it went off right, then put hero on the other side of screen
         else if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offRight)
         {
             pos.x = -S.GetComponent<BoundsCheck>().camWidth + S.GetComponent<BoundsCheck>().radius;

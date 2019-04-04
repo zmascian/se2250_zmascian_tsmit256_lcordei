@@ -7,8 +7,8 @@ public class BuddyShip : MonoBehaviour
 
     public GameObject hero;
     private Hero _heroScript;
-    public float posXFromHero;
-    private BoundsCheck _bndCheck;
+    public float posXFromHero;          //A standard value that buddyShip should be from Hero
+    private BoundsCheck _bndCheck;      
     public float speed, rollMult, pitchMult;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
@@ -40,7 +40,7 @@ public class BuddyShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Fires the weapon script attached to weapon GO of buddyShip
         _weapon.Fire();
 
         if(hero == null) //once hero is destroyed, the buddy ship should be destroyed as well
@@ -49,7 +49,7 @@ public class BuddyShip : MonoBehaviour
         }
 
         //Need to update speed to always match Hero speed 
-        //(may change when Hero colour changes or when hero picks up boost)
+        //It may change when Hero colour changes or when hero picks up boost
         speed = _heroScript.speed;
 
         float xAxis = Input.GetAxis("Horizontal");
@@ -58,7 +58,7 @@ public class BuddyShip : MonoBehaviour
         Vector3 pos = transform.position;
 
         //if hero is not at right or left edge, move BuddyShip. 
-        //This will stop Buddyships from moving when Hero is not
+        //This will keep Buddyships from moving when Hero is not
         if (hero!= null && hero.transform.position.x < _bndCheck.camWidth - hero.GetComponent<BoundsCheck>().radius
             && hero.transform.position.x > -_bndCheck.camWidth + hero.GetComponent<BoundsCheck>().radius) 
         {
@@ -68,8 +68,9 @@ public class BuddyShip : MonoBehaviour
 
 
         //If hero is too close to buddyShip or too far away...
-        if (hero != null && (posXFromHero > Mathf.Abs(transform.position.x - hero.transform.position.x)
-            || (posXFromHero < Mathf.Abs(transform.position.x - hero.transform.position.x) && _bndCheck.camWidth - Mathf.Abs(transform.position.x) > 15)))
+        if (hero != null && (posXFromHero > Mathf.Abs(transform.position.x - hero.transform.position.x) //If it is too close
+            || (posXFromHero < Mathf.Abs(transform.position.x - hero.transform.position.x) && //If it is too far
+            _bndCheck.camWidth - Mathf.Abs(transform.position.x) > 15))) //If the buddyShip isn't warped on the otherside
         {
             //And, if buddyShip is on left side of hero...
             if (transform.position.x - hero.transform.position.x < 0)
@@ -82,15 +83,6 @@ public class BuddyShip : MonoBehaviour
 
         transform.position = pos; //Set the gameobjects position to the pos Vector
 
-   
-        //use the fireDelegate to fire Weapons
-        //First, make sure the button is pressed: Axis ("Jump")
-        //Then ensure that fireDelegate isn't null to avoid an error
-        if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
-        {
-            fireDelegate();
-        }
-
 
         if (_possibleWarp == true)
         {
@@ -99,29 +91,27 @@ public class BuddyShip : MonoBehaviour
         else
         {
             _possibleWarp = false;
-            GetComponent<BoundsCheck>().keepOnScreen = true;
+            GetComponent<BoundsCheck>().keepOnScreen = true; //keep the go on screen if not warping
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        GameObject otherGO = other.gameObject;
         Transform rootT = other.gameObject.transform.root;
         GameObject go = rootT.gameObject;
 
-        if (go == _lastTriggerGo)
+        if (other.gameObject.tag == "ProjectileEnemy") //if triggered by an enemy projectile
+        {
+            Destroy(this.gameObject);
+            Destroy(other.gameObject);
+            _lastTriggerGo = other.gameObject;
+        }
+        if (go == _lastTriggerGo)   //if its the same as last time, don't do anything
         {
             return;
         }
-
         _lastTriggerGo = go;
-        if (other.gameObject.tag == "ProjectileEnemy") //if triggered by an enemy projectile
-        {
-            Destroy(this.gameObject);      //... and Destroy the enemy
-            Destroy(other);
-            _lastTriggerGo = other.gameObject;
-        }
-        else if (go.tag == "EnemyBoss") //if triggered by an enemy
+        if (go.tag == "EnemyBoss") //if triggered by an enemy
         {
             Destroy(this.gameObject);
             Destroy(go);//... and Destroy the enemy
@@ -136,10 +126,7 @@ public class BuddyShip : MonoBehaviour
             //If triggered by power-up
             AbsorbPowerUp(go);
         }
-        else
-        {
-            print("Triggered by non-Enemy: " + go.name);
-        }
+
     }
 
     public void AbsorbPowerUp(GameObject go)
@@ -148,9 +135,10 @@ public class BuddyShip : MonoBehaviour
         Vector3 pos = transform.position;
         switch (pu.type)
         {
+            //Warp, shield, boost powerups can all be shared directly with hero and do not affect buddyShip
             case WeaponType.warp:
             case WeaponType.shield: 
-            case WeaponType.boost:
+            case WeaponType.boost:  
                 _heroScript.AbsorbPowerUp(go);
                 break;
             case WeaponType.bomb: //Only destroy the buddyShip, hero should not be hurt
@@ -162,29 +150,37 @@ public class BuddyShip : MonoBehaviour
         pu.AbsorbedBy();
     }
 
+    //This takes care of the buddyShip warp, 
+    //Unlike hero, buddyShip can warp an infinite amount of times
     void Warp(Vector3 pos)
     {
         GetComponent<BoundsCheck>().keepOnScreen = false;
+
+        //Although keepOnScreen is false, this will still keep buddyShip on screen vertically
         if (transform.position.y > GetComponent<BoundsCheck>().camHeight - GetComponent<BoundsCheck>().radius)
         {
             pos.y = GetComponent<BoundsCheck>().camHeight - GetComponent<BoundsCheck>().radius;
             transform.position = pos;
         }
 
+        //Although keepOnScreen is false, this will still keep buddyShip on screen vertically
         if (transform.position.y < -GetComponent<BoundsCheck>().camHeight + GetComponent<BoundsCheck>().radius)
         {
             pos.y = -GetComponent<BoundsCheck>().camHeight + GetComponent<BoundsCheck>().radius;
             transform.position = pos;
         }
 
+        //If it went off left, then put buddyship on the other side of screen
         if (GetComponent<BoundsCheck>() != null && GetComponent<BoundsCheck>().offLeft)
         {
-            pos.x = _bndCheck.camWidth - hero.GetComponent<BoundsCheck>().radius; //adjusts to hero level
+            pos.x = _bndCheck.camWidth - hero.GetComponent<BoundsCheck>().radius; //positions heroRadius from edge
             transform.position = pos;
         }
+
+        //If it went off right, then put buddyship on the other side of screen
         else if (GetComponent<BoundsCheck>() != null && GetComponent<BoundsCheck>().offRight)
         {
-            pos.x = -_bndCheck.camWidth + hero.GetComponent<BoundsCheck>().radius;
+            pos.x = -_bndCheck.camWidth + hero.GetComponent<BoundsCheck>().radius; //positions heroRadius from edge
             transform.position = pos;
         }
     }

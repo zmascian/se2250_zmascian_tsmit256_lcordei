@@ -472,7 +472,7 @@ PrefabInstance:
         type: 3}
       propertyPath: def.projectilePrefab
       value: 
-      objectReference: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
+      objectReference: {fileID: 1567194746187364, guid: 29f613712c83e684e87ddb421148f2ca,
         type: 3}
     - target: {fileID: 7698522786584601561, guid: 555480028c8ae4b4a82724621395017d,
         type: 3}

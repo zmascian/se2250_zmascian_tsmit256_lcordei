@@ -26,7 +26,6 @@ public class Weapon : MonoBehaviour
     public WeaponDefinition def;
     public GameObject collar;
     public float lastShotTime; //Time the last shot was fired
-
     private Renderer collarRend;
 
     void Start()
@@ -70,9 +69,9 @@ public class Weapon : MonoBehaviour
         {
             this.gameObject.SetActive(true);
         }
-        def = Main.GetWeaponDefinition(_type);
+        def = Main.GetWeaponDefinition(_type); //get the weapond definition from the main script for type
         collarRend.material.color = def.color;
-        if (gameObject.transform.root.tag == "EnemyBoss")  // sets the fire rate of the Enemy Boss
+        if (gameObject.transform.root.tag == "EnemyBoss")  // sets the fire rate of the Enemy Boss's weapon
             def.delayBetweenShots = 1/(gameObject.transform.root.GetComponent<Enemy_3>().fireRate*0.5f);
         lastShotTime = 0; //You can fire immediately after _type is set
     }
@@ -94,11 +93,13 @@ public class Weapon : MonoBehaviour
         }
         switch (type)
         {
+            //If simple, then just shoot one bullet straight up
             case WeaponType.simple:
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
 
+            //Three bullets
             case WeaponType.blaster:
                 p = MakeProjectile();   //Middle Proj.
                 p.rigid.velocity = vel;
@@ -111,7 +112,6 @@ public class Weapon : MonoBehaviour
                 break;
 
             case WeaponType.sonic: //Makes 31 bullets
-
                 p = MakeProjectile();   //Middle Proj.
                 p.rigid.velocity = vel;
 
@@ -136,23 +136,24 @@ public class Weapon : MonoBehaviour
                 p.transform.rotation = Quaternion.AngleAxis(-20, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
                 break;
-
+            
+             //Just make one bullet and let MissileProjectile control homing
             case WeaponType.missile:
                 p = MakeProjectile();
-                p.rigid.velocity = vel;
                 break;
         }
     }
 
     public Projectile MakeProjectile()
     {
+        //Instantiate from given prefab
         GameObject go = Instantiate<GameObject>(def.projectilePrefab);
-        if(transform.parent.gameObject.tag == "Hero")
+        if(transform.parent.gameObject.tag == "Hero") //If hero, make its tags projectileHero
         {
             go.tag = "ProjectileHero";
             go.layer = LayerMask.NameToLayer("ProjectileHero");
         }
-        else if(transform.parent.gameObject.tag == "BuddyShip")
+        else if(transform.parent.gameObject.tag == "BuddyShip") //make tags ProjectileHero for buddyships as well
         {
             go.tag = "ProjectileHero";
             go.layer = LayerMask.NameToLayer("ProjectileHero");
@@ -166,7 +167,7 @@ public class Weapon : MonoBehaviour
         go.transform.SetParent(PROJECTILE_ANCHOR, true);
         Projectile p = go.GetComponent<Projectile>();
         p.type = type;
-        lastShotTime = Time.time;
+        lastShotTime = Time.time; //Set the time of last shot time to be now
         return (p);
     }
 
@@ -174,6 +175,7 @@ public class Weapon : MonoBehaviour
     // Used to switch weapons
    void Update()
     {
+        //If c is pressed, switch from simle to blaster or vice versa
         if (Input.GetKeyDown("c") && gameObject.transform.root.tag == "Hero")
         {
             if (type == WeaponType.simple)

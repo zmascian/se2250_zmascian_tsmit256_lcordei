@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
         switch (otherGO.tag)
         {
             case "ProjectileHero":
-            case "ProjectileBuddy":
                 Projectile p = otherGO.GetComponent<Projectile>();
                 //If offscreen, don't damage
                 if (!bndCheck.isOnScreen)
@@ -68,6 +67,31 @@ public class Enemy : MonoBehaviour
                 //Hurt this enemy and get damage amount from WEAP_DICT
                 health -= Main.GetWeaponDefinition(p.type).damageOnHit;
                 if(health <= 0)
+                {
+                    //Tell the Main singleton that this ship was destroyed
+                    if (!_notifiedOfDestruction)
+                    {
+                        Main.S.ShipDestroyed(this);
+                    }
+                    _notifiedOfDestruction = true;
+                    Destroy(this.gameObject);
+
+                    AddToScore();
+                }
+                Destroy(otherGO);
+                break;
+
+            case "ProjectileBuddy":
+                MissileProjectile mp = otherGO.GetComponent<MissileProjectile>();
+                //If offscreen, don't damage
+                if (!bndCheck.isOnScreen)
+                {
+                    Destroy(otherGO);
+                    break;
+                }
+                //Hurt this enemy and get damage amount from WEAP_DICT
+                health -= Main.GetWeaponDefinition(mp.type).damageOnHit;
+                if (health <= 0)
                 {
                     //Tell the Main singleton that this ship was destroyed
                     if (!_notifiedOfDestruction)

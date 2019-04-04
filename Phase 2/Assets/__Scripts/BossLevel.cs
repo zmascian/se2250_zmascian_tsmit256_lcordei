@@ -32,7 +32,7 @@ public class BossLevel : MonoBehaviour
             _bossspawned = false;
               
         }
-        if (ScoreManager.SCORE >= _pastLevelScore+30  &&_bossspawned==false) // checks to see if the score is at a certain value and checks if the boss has spawned
+        if (ScoreManager.SCORE >= _pastLevelScore+50  &&_bossspawned==false) // checks to see if the score is at a certain value and checks if the boss has spawned
         {
             _prevEnemySpawnRate = _main.enemySpawnPerSecond; // gets a copy of the current spawn rate
             _main.enemySpawnPerSecond = 0; //sets the spawn rate to 0
@@ -41,7 +41,7 @@ public class BossLevel : MonoBehaviour
             LevelManager.ADD_LEVEL(); // adds a level 
             Invoke("SpawnBoss", 7f);
             
-            _pastLevelScore += 30;
+            _pastLevelScore += 50;
 
         }
     }

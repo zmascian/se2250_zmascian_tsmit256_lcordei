@@ -554,6 +554,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBuddyShip
       objectReference: {fileID: 0}
+    - target: {fileID: 8294113874807388200, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8565265739831661094, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -612,7 +617,17 @@ PrefabInstance:
     - target: {fileID: 4575522124964756171, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
         type: 3}
       propertyPath: _type
-      value: 2
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575522124964756171, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
+        type: 3}
+      propertyPath: def.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575522124964756171, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
+        type: 3}
+      propertyPath: def.projectilePrefab
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3555769934396103611, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
         type: 3}
@@ -633,7 +648,7 @@ PrefabInstance:
         type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
+      objectReference: {fileID: 1426628982898044, guid: 6af0f097debd2004286f9a047175af9b,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f1b11eb00c7a554e9237bf046ad5e35, type: 3}
@@ -746,7 +761,7 @@ MonoBehaviour:
   enemyDefaultPadding: 1.5
   weaponDefinitions:
   - type: 1
-    letter: B
+    letter: 9
     color: {r: 1, g: 1, b: 1, a: 1}
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
       type: 3}
@@ -814,7 +829,7 @@ MonoBehaviour:
     damageOnHit: 1
     continousDamage: 0
     delayBetweenShots: 0.4
-    velocity: 50
+    velocity: 30
   - type: 8
     letter: E
     color: {r: 0.8301887, g: 0.11356357, b: 0.24670061, a: 1}
@@ -825,6 +840,16 @@ MonoBehaviour:
     continousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
+  - type: 9
+    letter: M
+    color: {r: 0, g: 0.10196079, b: 0.8313726, a: 1}
+    projectilePrefab: {fileID: 1426628982898044, guid: 6af0f097debd2004286f9a047175af9b,
+      type: 3}
+    projectileColor: {r: 0, g: 0.10035014, b: 0.83137256, a: 1}
+    damageOnHit: 1
+    continousDamage: 0
+    delayBetweenShots: 1
+    velocity: 60
   prefabPowerUp: {fileID: 8403625492973364549, guid: 3aac82f1270da4ec5a5f9c4709b6136f,
     type: 3}
   powerUpFrequency: 06000000040000000300000005000000
@@ -1868,6 +1893,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightBuddyShip
       objectReference: {fileID: 0}
+    - target: {fileID: 8294113874807388200, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8565265739831661094, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1926,7 +1956,17 @@ PrefabInstance:
     - target: {fileID: 4575522124964756171, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
         type: 3}
       propertyPath: _type
-      value: 2
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575522124964756171, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
+        type: 3}
+      propertyPath: def.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575522124964756171, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
+        type: 3}
+      propertyPath: def.projectilePrefab
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3555769934396103611, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
         type: 3}
@@ -1943,5 +1983,11 @@ PrefabInstance:
       propertyPath: pitchMult
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 3555769934396103611, guid: 8f1b11eb00c7a554e9237bf046ad5e35,
+        type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1426628982898044, guid: 6af0f097debd2004286f9a047175af9b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f1b11eb00c7a554e9237bf046ad5e35, type: 3}
