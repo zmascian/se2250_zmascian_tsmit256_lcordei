@@ -72,8 +72,8 @@ public class Weapon : MonoBehaviour
         }
         def = Main.GetWeaponDefinition(_type);
         collarRend.material.color = def.color;
-        if (gameObject.transform.root.tag == "Enemy")
-            def.delayBetweenShots = 1f;
+        if (gameObject.transform.root.tag == "EnemyBoss")  // sets the fire rate of the Enemy Boss
+            def.delayBetweenShots = 1/(gameObject.transform.root.GetComponent<Enemy_3>().fireRate*0.5f);
         lastShotTime = 0; //You can fire immediately after _type is set
     }
 
@@ -124,6 +124,17 @@ public class Weapon : MonoBehaviour
                     p.transform.rotation = Quaternion.AngleAxis(-2.5f * i, Vector3.back);
                     p.rigid.velocity = p.transform.rotation * vel;
                 }
+                break;
+
+            case WeaponType.enemy:
+                p = MakeProjectile();   //Middle Proj.
+                p.rigid.velocity = vel;
+                p = MakeProjectile();   //Right Proj.
+                p.transform.rotation = Quaternion.AngleAxis(20, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();   //Left Proj.
+                p.transform.rotation = Quaternion.AngleAxis(-20, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
                 break;
         }
     }

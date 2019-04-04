@@ -8,7 +8,7 @@ public class Enemy_3 : Enemy
     private float _timeStart;
     private float _direction;
     private float _duration = 4;
-    private Weapon _weapon;
+    public Weapon _weapon;
     public float gameRestartDelay = 2f;
 
 
@@ -18,13 +18,14 @@ public class Enemy_3 : Enemy
         _weapon = gameObject.GetComponentInChildren<Weapon>();
         p0 = p1 = pos;
         InitMovement();
+
     }
     void InitMovement()
     {
         p0 = p1;
         float widMinRad = bndCheck.camWidth - bndCheck.radius;
         float hgtMinRad = bndCheck.camHeight - bndCheck.radius;
-        p1.x = Random.Range(-widMinRad / 2.0f, widMinRad / 2.0f);
+        p1.x = Random.Range(-widMinRad , widMinRad / 2.0f);
         p1.y = Random.Range(-hgtMinRad / 3.0f, hgtMinRad / 3.0f);
 
         _timeStart = Time.time;
