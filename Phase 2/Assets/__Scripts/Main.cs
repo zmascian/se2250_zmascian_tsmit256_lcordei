@@ -13,7 +13,8 @@ public enum WeaponType
     warp,        //Allows hero to break boundaries.
     boost,       //Increases Speed of hero
     bomb,           //Destorys hero Entry 
-    sonic           //shoots 31 bullets
+    sonic,           //shoots 31 bullets
+    enemy           //enemies wepon similar to blaster
 }
 
 public class Main : MonoBehaviour
