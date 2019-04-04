@@ -14,7 +14,8 @@ public enum WeaponType
     boost,       //Increases Speed of hero
     bomb,           //Destorys hero Entry 
     sonic,           //shoots 31 bullets
-    enemy           //enemies wepon similar to blaster
+    enemy,           //enemy's weapon similar to blaster
+    missile     //Seeks out enemies
 }
 
 public class Main : MonoBehaviour

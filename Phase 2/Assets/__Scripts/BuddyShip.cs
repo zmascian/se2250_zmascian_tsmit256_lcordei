@@ -40,6 +40,9 @@ public class BuddyShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        _weapon.Fire();
+
         if(hero == null) //once hero is destroyed, the buddy ship should be destroyed as well
         {
             Destroy(this.gameObject);

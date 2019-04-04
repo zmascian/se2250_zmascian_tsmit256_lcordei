@@ -515,7 +515,6 @@ MonoBehaviour:
   speed: 30
   rollMult: -15
   pitchMult: 25
-  lengthOfSpeedIncrease: 5
   projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
     type: 3}
   projectileSpeed: 40
@@ -638,6 +637,11 @@ PrefabInstance:
       propertyPath: collar
       value: 
       objectReference: {fileID: 2570712042416679530}
+    - target: {fileID: 5111078847267556057, guid: 555480028c8ae4b4a82724621395017d,
+        type: 3}
+      propertyPath: _type
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7698522786584601561, guid: 555480028c8ae4b4a82724621395017d,
         type: 3}
       propertyPath: m_Layer
