@@ -35,7 +35,9 @@ public class Enemy_3 : Enemy
     {
         
         _weapon.Fire();
-      
+        //transform.Find("Weapon").Find("Audio").Find("enemyAudio").GetComponent<AudioSource>().Play();
+
+
         float u = (Time.time - _timeStart) / _duration;
 
         if (u >= 1)

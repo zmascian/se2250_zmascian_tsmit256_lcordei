@@ -9,10 +9,12 @@ public class Enemy : MonoBehaviour
     public float powerUpDropChance = 1f; //this is the chance for the enemy to drop a power-up
     private bool _notifiedOfDestruction = false;
     private GameObject _lastTriggerGo = null;
+   
 
     void Awake()
     {
         bndCheck = GetComponent<BoundsCheck>();
+
     }
 
 
@@ -79,8 +81,9 @@ public class Enemy : MonoBehaviour
                         Main.S.ShipDestroyed(this);
                     }
                     _notifiedOfDestruction = true;
-                    Destroy(this.gameObject);
 
+                    Destroy(this.gameObject);
+                    transform.Find("Weapon").Find("Audio").Find("destroyAudio").GetComponent<AudioSource>().Play();
                     AddToScore();
                 }
                 Destroy(otherGO);
@@ -109,8 +112,9 @@ public class Enemy : MonoBehaviour
                         Main.S.ShipDestroyed(this);
                     }
                     _notifiedOfDestruction = true;
+                   
                     Destroy(this.gameObject);
-
+                    transform.Find("Weapon").Find("Audio").Find("destroyAudio").GetComponent<AudioSource>().Play();
                     AddToScore();
                 }
                 Destroy(otherGO);
