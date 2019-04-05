@@ -144,7 +144,7 @@ _enemySound = go.GetComponent<AudioSource>();*/
                 break;
 
             case WeaponType.enemy:
-                audio[3].Play();
+
                 p = MakeProjectile();   //Middle Proj.
                 p.rigid.velocity = vel;
                 p = MakeProjectile();   //Right Proj.
@@ -153,6 +153,7 @@ _enemySound = go.GetComponent<AudioSource>();*/
                 p = MakeProjectile();   //Left Proj.
                 p.transform.rotation = Quaternion.AngleAxis(-20, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+                audio[3].Play();
                 break;
             
              //Just make one bullet and let MissileProjectile control homing
