@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     protected BoundsCheck bndCheck;
     public float powerUpDropChance = 1f; //this is the chance for the enemy to drop a power-up
     private bool _notifiedOfDestruction = false;
-   
+    private GameObject _lastTriggerGo = null;
 
     void Awake()
     {
@@ -58,6 +58,11 @@ public class Enemy : MonoBehaviour
         {
             case "ProjectileHero":
                 Projectile p = otherGO.GetComponent<Projectile>();
+                if (otherGO == _lastTriggerGo)
+                {
+                    return;
+                }
+                _lastTriggerGo = otherGO;
                 //If offscreen, don't damage
                 if (!bndCheck.isOnScreen)
                 {
@@ -84,6 +89,11 @@ public class Enemy : MonoBehaviour
             case "ProjectileBuddy":
                 MissileProjectile mp = otherGO.GetComponent<MissileProjectile>();
                 //If offscreen, don't damage
+                if (otherGO == _lastTriggerGo)
+                {
+                    return;
+                }
+                _lastTriggerGo = otherGO;
                 if (!bndCheck.isOnScreen)
                 {
                     Destroy(otherGO);
