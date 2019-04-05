@@ -9,10 +9,12 @@ public class Enemy : MonoBehaviour
     public float powerUpDropChance = 1f; //this is the chance for the enemy to drop a power-up
     private bool _notifiedOfDestruction = false;
     private GameObject _lastTriggerGo = null;
+    private AudioSource audio;
 
     void Awake()
     {
         bndCheck = GetComponent<BoundsCheck>();
+        audio = transform.Find("Audio").Find("destoryAudio").GetComponent<AudioSource>();
     }
 
 
@@ -80,6 +82,7 @@ public class Enemy : MonoBehaviour
                     }
                     _notifiedOfDestruction = true;
                     Destroy(this.gameObject);
+                    audio.Play();
 
                     AddToScore();
                 }
