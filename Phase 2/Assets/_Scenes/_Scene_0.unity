@@ -842,10 +842,10 @@ MonoBehaviour:
     velocity: 50
   - type: 9
     letter: M
-    color: {r: 0, g: 0.10196079, b: 0.8313726, a: 1}
+    color: {r: 0.22758675, g: 1, b: 0, a: 1}
     projectilePrefab: {fileID: 1426628982898044, guid: 6af0f097debd2004286f9a047175af9b,
       type: 3}
-    projectileColor: {r: 0, g: 0.10035014, b: 0.83137256, a: 1}
+    projectileColor: {r: 0.227451, g: 1, b: 0, a: 1}
     damageOnHit: 1
     continousDamage: 0
     delayBetweenShots: 1
@@ -967,7 +967,7 @@ MonoBehaviour:
   panels:
   - {fileID: 1682743384}
   - {fileID: 2035694346}
-  scrollSpeed: -75
+  scrollSpeed: -20
   motionMult: 0.1
 --- !u!64 &564085562
 MeshCollider:
