@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Tracks : MonoBehaviour
 {
-    public GameObject audio;
+   /* public GameObject audio;
     public AudioSource ad;
+    public Sounds[] 
+
+    [Header("Set Dynamically")]
+    public Sounds audio1;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,4 +32,9 @@ public class Tracks : MonoBehaviour
 
         ad.Play();
     }
+
+    void SetAudio(Sounds sounds){
+        ad.clip = sounds;
+        PlayAudio();
+    }*/
 }

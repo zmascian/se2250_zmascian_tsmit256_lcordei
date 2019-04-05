@@ -16,14 +16,7 @@ public enum WeaponType
     sonic           //shoots 31 bullets
 }
 
-public enum Sounds
-{
-    none,       //no weapon
-    duringGame,      
-    bossSound,
-    warpSound,
-    boostSound
-}
+
 
 public class Main : MonoBehaviour
 {
@@ -37,6 +30,7 @@ public class Main : MonoBehaviour
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
     public WeaponType[] powerUpFrequency;
+    
     
 
     private BoundsCheck bndCheck;

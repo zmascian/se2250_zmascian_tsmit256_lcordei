@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponDefinition
 {
+
     public WeaponType type = WeaponType.none;
     public string letter;                       //Letter to show on power-up
     public Color color = Color.white;           //Color of Collar and power-up
@@ -18,6 +19,8 @@ public class WeaponDefinition
 
 public class Weapon : MonoBehaviour
 {
+    public GameObject[] audio;
+    private AudioSource simpleSound, blasterSound, joseSound;
     static public Transform PROJECTILE_ANCHOR;
 
     [Header("Set Dynamically")]
@@ -50,6 +53,18 @@ public class Weapon : MonoBehaviour
         {
             rootGo.GetComponent<Hero>().fireDelegate += Fire;
         }
+    }
+
+    void Awake()
+    {
+
+        GameObject go = Instantiate(audio[0]) as GameObject;
+        simpleSound = go.GetComponent<AudioSource>();
+        go = Instantiate(audio[1]) as GameObject;
+        blasterSound = go.GetComponent<AudioSource>();
+        go = Instantiate(audio[2]) as GameObject;
+        joseSound = go.GetComponent<AudioSource>();
+
     }
 
     public WeaponType type
@@ -95,6 +110,7 @@ public class Weapon : MonoBehaviour
         switch (type)
         {
             case WeaponType.simple:
+                simpleSound.Play();
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;

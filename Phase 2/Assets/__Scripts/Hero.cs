@@ -21,6 +21,12 @@ public class Hero : MonoBehaviour
 
 
 
+    /*GameObject go = Instantiate(audio) as GameObject;
+    ad = go.GetComponent<AudioSource>();
+        PlayAudio();*/
+
+
+
     [Header("Set Dynamically")]
     [SerializeField]
     private float _shieldLevel = 1;  // Remeber the underscore
