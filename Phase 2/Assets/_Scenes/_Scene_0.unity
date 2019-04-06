@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1599,6 +1599,12 @@ MonoBehaviour:
     pitch: 1.08
     loop: 0
     source: {fileID: 0}
+  - name: NoJose
+    clip: {fileID: 8300000, guid: dc079be78e668e943b1f9dbd50bd3191, type: 3}
+    volume: 0.44
+    pitch: 1.08
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &638812821
 Transform:
   m_ObjectHideFlags: 0
@@ -2991,11 +2997,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 140796699}
     m_Modifications:
-    - target: {fileID: 963482550135259743, guid: 555480028c8ae4b4a82724621395017d,
-        type: 3}
-      propertyPath: m_Name
-      value: Weapon
-      objectReference: {fileID: 0}
     - target: {fileID: 5178427441136824878, guid: 555480028c8ae4b4a82724621395017d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3050,6 +3051,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 963482550135259743, guid: 555480028c8ae4b4a82724621395017d,
+        type: 3}
+      propertyPath: m_Name
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 5111078847267556057, guid: 555480028c8ae4b4a82724621395017d,
         type: 3}
