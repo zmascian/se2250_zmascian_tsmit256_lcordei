@@ -1579,6 +1579,24 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ab0eed03969404c4b81e39d2f339a3d6, type: 3}
     volume: 0.142
     pitch: 1.08
+    loop: 1
+    source: {fileID: 0}
+  - name: WarpSound
+    clip: {fileID: 8300000, guid: ffa266edb6093ad49a0df5378d25f2ec, type: 3}
+    volume: 0.142
+    pitch: 1.08
+    loop: 0
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 0358a27de71d15b4cb364677b4d197cf, type: 3}
+    volume: 1
+    pitch: 1.08
+    loop: 0
+    source: {fileID: 0}
+  - name: NewGame
+    clip: {fileID: 8300000, guid: 7d2158a9090d43945b487ea1801ccd4e, type: 3}
+    volume: 0.142
+    pitch: 1.08
     loop: 0
     source: {fileID: 0}
 --- !u!4 &638812821

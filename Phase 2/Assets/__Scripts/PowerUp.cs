@@ -53,6 +53,7 @@ public class PowerUp : MonoBehaviour
                                    Random.Range(rotMinMax.x,rotMinMax.y));
 
         birthTime = Time.time;
+        
     }
 
 

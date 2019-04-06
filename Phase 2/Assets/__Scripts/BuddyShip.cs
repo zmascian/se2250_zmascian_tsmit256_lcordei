@@ -87,6 +87,7 @@ public class BuddyShip : MonoBehaviour
         if (_possibleWarp == true)
         {
             Warp(pos);
+            
         }
         else
         {
@@ -179,6 +180,7 @@ public class BuddyShip : MonoBehaviour
         {
             pos.x = _bndCheck.camWidth - hero.GetComponent<BoundsCheck>().radius; //positions heroRadius from edge
             transform.position = pos;
+            FindObjectOfType<SoundManager>().Play("WarpSound");
         }
 
         //If it went off right, then put buddyship on the other side of screen
@@ -186,7 +188,10 @@ public class BuddyShip : MonoBehaviour
         {
             pos.x = -_bndCheck.camWidth + hero.GetComponent<BoundsCheck>().radius; //positions heroRadius from edge
             transform.position = pos;
+            FindObjectOfType<SoundManager>().Play("WarpSound");
         }
+
+        
     }
 
 }

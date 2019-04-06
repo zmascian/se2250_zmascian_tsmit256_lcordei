@@ -7,7 +7,7 @@ public class Hero : MonoBehaviour
     static public Hero S; //Singleton for Hero Script
 
     public float speed, rollMult, pitchMult, lengthOfSpeedIncrease;
-    public float gameRestartDelay = 2f;
+    public float gameRestartDelay = 4f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
     private int _numOfWarp = 3;
@@ -76,6 +76,7 @@ public class Hero : MonoBehaviour
         if (S != null && _possibleWarp == true && _numOfWarp > 0)
         {
             Warp(pos);
+            
         }
         else //otherwise, ensure that hero does not warp
         {
@@ -127,6 +128,7 @@ public class Hero : MonoBehaviour
             FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
             Destroy(go);//... and Destroy the enemy
             
+
         }
         else if (go.tag == "Enemy") //if the shield was triggered by an enemy
         {                       //Decrease the level of the shield by 1
@@ -198,8 +200,10 @@ public class Hero : MonoBehaviour
             {
                 Destroy(this.gameObject);
                 FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
+                StartCoroutine(ExecuteAfterTime(4));
                 //Tell Main.S to restart the game after a delay
                 Main.S.DelayedRestart(gameRestartDelay);
+                
             }
         }
     }
@@ -300,6 +304,7 @@ public class Hero : MonoBehaviour
             transform.position = pos;
             _numOfWarp--;
             ScoreManager.WARPS--;
+            FindObjectOfType<SoundManager>().Play("WarpSound");
         }
         //If it went off right, then put hero on the other side of screen
         else if (S.GetComponent<BoundsCheck>() != null && S.GetComponent<BoundsCheck>().offRight)
@@ -308,6 +313,16 @@ public class Hero : MonoBehaviour
             transform.position = pos;
             _numOfWarp--;
             ScoreManager.WARPS--;
+            FindObjectOfType<SoundManager>().Play("WarpSound");
         }
+
+    }
+
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        FindObjectOfType<SoundManager>().Play("GameOver");
+        yield return new WaitForSeconds(time);
+       
+
     }
 }
