@@ -66,11 +66,18 @@ public class VoiceRecognition : MonoBehaviour
     //Fires the sonic weapon with 31 bullets from the weapon script
     void FireBulletWave()
     {
-        WeaponType temp = _weapon.type; //Stores the type of weapon the player was using before this sonic
-        _weapon.type = WeaponType.sonic;
-        _weapon.Fire();
-        _weapon.type = temp; //Gives the user the same type of weapon it had before this sonic shot
-       
+        if (ScoreManager.SCORE >= 5) //Can only use this function if score is large enough
+        {
+            WeaponType temp = _weapon.type; //Stores the type of weapon the player was using before this sonic
+            _weapon.type = WeaponType.sonic;
+            _weapon.Fire();
+            _weapon.type = temp; //Gives the user the same type of weapon it had before this sonic shot
+            ScoreManager.LOSE_POINTS(5);    //Costs points to use the Jose function
+        }
+        else
+        {
+            FindObjectOfType<SoundManager>().Play("NoJose");
+        }
 
     }
 }

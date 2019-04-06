@@ -34,7 +34,6 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = "Score: "+ SCORE.ToString();
         highscoreText.text= "Highscore: " + _HIGH_SCORE.ToString();
         numWarps.text = "";
-
       
     }
 
@@ -47,25 +46,24 @@ public class ScoreManager : MonoBehaviour
         }
         else
             SCORE = 0;
-
-
     }
-
-
 
 
     static public void ADD_POINTS(int point)
     {
-        S.AddPoints(point);
+        S.ChangePoints(point);
     }
 
-    void AddPoints(int point )
+    void ChangePoints(int point )
     {
         _score += point;
         scoreText.text = "Score: " + SCORE.ToString();
     }
-    
 
+    static public void LOSE_POINTS(int point)
+    {
+        S.ChangePoints(-point);
+    }
 
     static public int SCORE {
         get { return S._score; }

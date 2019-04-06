@@ -1050,7 +1050,7 @@ MonoBehaviour:
   enemyDefaultPadding: 1.5
   weaponDefinitions:
   - type: 1
-    letter: 9
+    letter: S
     color: {r: 1, g: 1, b: 1, a: 1}
     projectilePrefab: {fileID: 8210606985341215705, guid: 34617c95ef7663f49a3ff452c85a108f,
       type: 3}
