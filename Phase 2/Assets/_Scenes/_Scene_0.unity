@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1517,7 +1517,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: simpleAudio
     clip: {fileID: 8300000, guid: 375e770244664234698d24656e2acd21, type: 3}
-    volume: 1
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -1529,7 +1529,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: trackAudio
     clip: {fileID: 8300000, guid: b03234310609d8145abe4c995291ed89, type: 3}
-    volume: 0.629
+    volume: 0.3
     pitch: 1.08
     loop: 1
     source: {fileID: 0}
@@ -1583,7 +1583,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: WarpSound
     clip: {fileID: 8300000, guid: ffa266edb6093ad49a0df5378d25f2ec, type: 3}
-    volume: 0.142
+    volume: 0.36
     pitch: 1.08
     loop: 0
     source: {fileID: 0}
@@ -1595,7 +1595,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: NewGame
     clip: {fileID: 8300000, guid: 7d2158a9090d43945b487ea1801ccd4e, type: 3}
-    volume: 0.142
+    volume: 0.44
     pitch: 1.08
     loop: 0
     source: {fileID: 0}
