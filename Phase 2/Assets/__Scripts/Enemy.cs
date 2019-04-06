@@ -35,8 +35,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {
  
-        Move();   
+        Move();   //Enemy will continously move
 
+        //Checks if the enemy is off screen and if so, will destroy it
         if( bndCheck != null && (bndCheck.offDown || bndCheck.offLeft|| bndCheck.offRight))
         {
             if (pos.y < bndCheck.camHeight - bndCheck.radius)
@@ -46,6 +47,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //A standard move down function that can be overriden by child classes
     public virtual void Move()
     {
         Vector3 tempPos = pos;
@@ -60,7 +62,7 @@ public class Enemy : MonoBehaviour
         {
             case "ProjectileHero":
                 Projectile p = otherGO.GetComponent<Projectile>();
-                if (otherGO == _lastTriggerGo)
+                if (otherGO == _lastTriggerGo) //If same game object from last trigger, don't do anything
                 {
                     return;
                 }
@@ -82,17 +84,17 @@ public class Enemy : MonoBehaviour
                     }
                     _notifiedOfDestruction = true;
 
-                    Destroy(this.gameObject);
+                    Destroy(this.gameObject); //Destroy the enemy if its health is less than or equal to 0
                     FindObjectOfType<SoundManager>().Play("destroyAudio");
-                    AddToScore();
+                    AddToScore(); //Add to the score since the enemy jsut died
                 }
-                Destroy(otherGO);
+                Destroy(otherGO);   //Destroys the projectile hero
                 break;
 
             case "ProjectileBuddy":
                 MissileProjectile mp = otherGO.GetComponent<MissileProjectile>();
                 //If offscreen, don't damage
-                if (otherGO == _lastTriggerGo)
+                if (otherGO == _lastTriggerGo) //If same game object from last trigger, don't do anything
                 {
                     return;
                 }
@@ -114,11 +116,11 @@ public class Enemy : MonoBehaviour
                     _notifiedOfDestruction = true;
 
                     
-                    Destroy(this.gameObject);
+                    Destroy(this.gameObject); //Destroy the enemy if its health is less than or equal to 0
                     FindObjectOfType<SoundManager>().Play("destroyAudio");
                     AddToScore();
                 }
-                Destroy(otherGO);
+                Destroy(otherGO); //Destroys the projectile buddy
                 break;
 
             default:
@@ -127,6 +129,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //Standard add to score will add 3 points to score but can be overridden by child classes
      public virtual void AddToScore()
     {
         ScoreManager.ADD_POINTS(3);

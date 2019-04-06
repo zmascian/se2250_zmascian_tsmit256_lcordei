@@ -34,10 +34,11 @@ public class Enemy_3 : Enemy
     public override void Move()
     {
         
-        _weapon.Fire();
+        _weapon.Fire(); //Execute the fire function of the weapon component each time move is called
+        //Actual fire rate will depend on settings in weapon class
         
 
-
+        //Same style as seen in Enemy_2 for its swoop but this is much more tame
         float u = (Time.time - _timeStart) / _duration;
 
         if (u >= 1)
@@ -68,21 +69,16 @@ public class Enemy_3 : Enemy
                 if (health <= 0)
                 {
                     FindObjectOfType<SoundManager>().Play("destroyAudio");
-                    Destroy(this.gameObject);
-                    AddToScore();
-                    
+                    Destroy(this.gameObject); //Destory the enemy when it is out of health
+                    AddToScore(); //Add to score when the enemy is dead
                 }
                 Destroy(otherGO);
-                break;
-
-            default:
-                print("Enemy hit by non-projectileHero: " + otherGO.name);
                 break;
         }
     }
 
 
-
+    //7 points are gained for each Enemy_3 gameobject that is destroyed
     public override void AddToScore()
     {
         ScoreManager.ADD_POINTS(7);

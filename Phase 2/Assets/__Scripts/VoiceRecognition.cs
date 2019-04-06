@@ -37,34 +37,39 @@ public class VoiceRecognition : MonoBehaviour
         _keywordRecognizer.Start();
     }
 
+    //This is a built-in function from UnityEngine.Windows.Speech which recognizes when phrases have been said
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {
-        Debug.Log(speech.text);
         _actions[speech.text].Invoke();
     }
 
+    //Increases the spawn rate of enemies by 0.75
     void IncreaseEnemySpawn()
     {
         _main.enemySpawnPerSecond += 0.75f;
         FindObjectOfType<SoundManager>().Play("MoreEnemies");
     }
 
+    //Decreases the spawn rate of enemies by 0.75
     void DecreaseEnemySpawn()
     {
-        //This ensures that there will always be at least a very small amount of enemies spawn
+        
         if (_main.enemySpawnPerSecond > 0.75f)
             _main.enemySpawnPerSecond -= 0.75f;
+
+        //This ensures that there will always be at least a very small amount of enemies spawn
         else
             _main.enemySpawnPerSecond = 0.1f;
         FindObjectOfType<SoundManager>().Play("LessEnemies");
     }
 
+    //Fires the sonic weapon with 31 bullets from the weapon script
     void FireBulletWave()
     {
-        WeaponType temp = _weapon.type;
+        WeaponType temp = _weapon.type; //Stores the type of weapon the player was using before this sonic
         _weapon.type = WeaponType.sonic;
         _weapon.Fire();
-        _weapon.type = temp;
+        _weapon.type = temp; //Gives the user the same type of weapon it had before this sonic shot
        
 
     }
