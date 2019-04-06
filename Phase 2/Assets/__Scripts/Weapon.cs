@@ -18,7 +18,8 @@ public class WeaponDefinition
 
 public class Weapon : MonoBehaviour
 {
-    private AudioSource[] audio = new AudioSource[5];     //private  _simpleSound, _blasterSound, _sonicSound, _enemySound, _missileSound;
+    
+    //private  _simpleSound, _blasterSound, _sonicSound, _enemySound, _missileSound;
     static public Transform PROJECTILE_ANCHOR;
 
     [Header("Set Dynamically")]
@@ -50,20 +51,10 @@ public class Weapon : MonoBehaviour
         {
             rootGo.GetComponent<Hero>().fireDelegate += Fire;
         }
+
     }
 
-    void Awake()     {
-       
-            audio[0] = transform.Find("Audio").Find("simpleAudio").GetComponent<AudioSource>();
-            audio[1] = transform.Find("Audio").Find("blasterAudio").GetComponent<AudioSource>();
-            audio[2] = transform.Find("Audio").Find("sonicAudio").GetComponent<AudioSource>();
-            audio[3] = transform.Find("Audio").Find("enemyAudio").GetComponent<AudioSource>();
-            audio[4] = transform.Find("Audio").Find("missileAudio").GetComponent<AudioSource>();
-
-        /*GameObject go = Instantiate(audio[0]) as GameObject;         _simpleSound = go.GetComponent<AudioSource>();         go = Instantiate(audio[1]) as GameObject;         _blasterSound = go.GetComponent<AudioSource>();         go = Instantiate(audio[2]) as GameObject;         _sonicSound = go.GetComponent<AudioSource>();
-go = Instantiate(audio[3]) as GameObject;
-_enemySound = go.GetComponent<AudioSource>();*/
-    }
+    
 
     public WeaponType type
     {
@@ -109,14 +100,14 @@ _enemySound = go.GetComponent<AudioSource>();*/
         {
             //If simple, then just shoot one bullet straight up
             case WeaponType.simple:
-                audio[0].Play();
+               
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
 
             //Three bullets
             case WeaponType.blaster:
-                audio[1].Play();
+                gameObject.transform.root.GetComponent<SoundManager>().Invoke("Play", 0);
                 p = MakeProjectile();   //Middle Proj.
                 p.rigid.velocity = vel;
                 p = MakeProjectile();   //Right Proj.
@@ -128,7 +119,7 @@ _enemySound = go.GetComponent<AudioSource>();*/
                 break;
 
             case WeaponType.sonic: //Makes 31 bullets
-                audio[2].Play();
+                gameObject.transform.root.GetComponent<SoundManager>().Invoke("Play(missileAudio)", 0);
                 p = MakeProjectile();   //Middle Proj.
                 p.rigid.velocity = vel;
 
@@ -153,12 +144,12 @@ _enemySound = go.GetComponent<AudioSource>();*/
                 p = MakeProjectile();   //Left Proj.
                 p.transform.rotation = Quaternion.AngleAxis(-20, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
-                audio[3].Play();
+                
                 break;
             
              //Just make one bullet and let MissileProjectile control homing
             case WeaponType.missile:
-                audio[4].Play();
+               
                 p = MakeProjectile();
                 break;
 

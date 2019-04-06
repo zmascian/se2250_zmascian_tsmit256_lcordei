@@ -83,7 +83,6 @@ public class Enemy : MonoBehaviour
                     _notifiedOfDestruction = true;
 
                     Destroy(this.gameObject);
-                    transform.Find("Weapon").Find("Audio").Find("destroyAudio").GetComponent<AudioSource>().Play();
                     AddToScore();
                 }
                 Destroy(otherGO);
@@ -114,7 +113,6 @@ public class Enemy : MonoBehaviour
                     _notifiedOfDestruction = true;
                    
                     Destroy(this.gameObject);
-                    transform.Find("Weapon").Find("Audio").Find("destroyAudio").GetComponent<AudioSource>().Play();
                     AddToScore();
                 }
                 Destroy(otherGO);

@@ -48,7 +48,8 @@ public class Main : MonoBehaviour
         {
             WEAP_DICT[def.type] = def;
         }
-
+        
+        
     }
 
     public void ShipDestroyed(Enemy e)
