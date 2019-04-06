@@ -34,6 +34,9 @@ public class BossLevel : MonoBehaviour
         }
         if (ScoreManager.SCORE >= _pastLevelScore+50  &&_bossspawned==false) // checks to see if the score is at a certain value and checks if the boss has spawned
         {
+
+            FindObjectOfType<SoundManager>().Stop("trackAudio");
+            FindObjectOfType<SoundManager>().Play("BossFight");
             _prevEnemySpawnRate = _main.enemySpawnPerSecond; // gets a copy of the current spawn rate
             _main.enemySpawnPerSecond = 0; //sets the spawn rate to 0
             LevelManager.S.bossFireRate = prefabBoss.GetComponent<Enemy_3>().fireRate* (LevelManager.LEVEL); // gets the boss's fire rate to display
@@ -79,5 +82,7 @@ public class BossLevel : MonoBehaviour
     {
         _main.enemySpawnPerSecond = _prevEnemySpawnRate;  // returns the game to the previous spawnrate
         _main.Invoke("SpawnEnemy", 1); // restarts the spawning waves
+        FindObjectOfType<SoundManager>().Play("trackAudio");
+        FindObjectOfType<SoundManager>().Stop("BossFight");
     }
 }

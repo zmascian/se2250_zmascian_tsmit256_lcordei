@@ -96,6 +96,7 @@ public class Hero : MonoBehaviour
         }
         unlockSkins();
         changeSkin();
+
         
     }
 
@@ -113,19 +114,24 @@ public class Hero : MonoBehaviour
 
         _lastTriggerGo = go;
         if (other.gameObject.tag == "ProjectileEnemy") //if the shield was triggered by an enemy projectile
-        {                       //Decrease the level of the shield by 1
+        {                
+            //Decrease the level of the shield by 1
             shieldLevel--;      //... and Destroy the enemy
+            FindObjectOfType<SoundManager>().Play("ShieldBreak");
             Destroy(other.gameObject);
             _lastTriggerGo = other.gameObject;
         }
         else if (go.tag == "EnemyBoss") //if the shield was triggered by an enemy 
         {
-            shieldLevel = -1;      
+            shieldLevel = -1;
+            FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
             Destroy(go);//... and Destroy the enemy
+            
         }
         else if (go.tag == "Enemy") //if the shield was triggered by an enemy
         {                       //Decrease the level of the shield by 1
             shieldLevel--;      //... and Destroy the enemy
+            FindObjectOfType<SoundManager>().Play("ShieldBreak");
             Destroy(go);
         }
         else if (go.tag == "PowerUp")
@@ -146,11 +152,13 @@ public class Hero : MonoBehaviour
                 _possibleWarp = true;
                 _numOfWarp = 3;
                 ScoreManager.WARPS= 3;
+                FindObjectOfType<SoundManager>().Play("Warp");
                 break;
 
             //If powerup is shield, add a random level of shield between 1 and the max possible addition
             case WeaponType.shield:
                 shieldLevel += Random.Range(1, 4 - shieldLevel);
+                FindObjectOfType<SoundManager>().Play("ShieldUp");
                 break;
 
             //If powerup is boost, multiply speed by two and set the speed duration
@@ -161,11 +169,13 @@ public class Hero : MonoBehaviour
                 }
                 lengthOfSpeedIncrease = _speedDuration;
                 _speedIncreased = true;
+                FindObjectOfType<SoundManager>().Play("Boost");
                 break;
             
              //If powerup is bomb, completely destroy the hero
             case WeaponType.bomb:
                 shieldLevel = -1;
+                FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
                 break;
             default:
                 break;
@@ -187,6 +197,7 @@ public class Hero : MonoBehaviour
             if (value < 0)
             {
                 Destroy(this.gameObject);
+                FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
                 //Tell Main.S to restart the game after a delay
                 Main.S.DelayedRestart(gameRestartDelay);
             }

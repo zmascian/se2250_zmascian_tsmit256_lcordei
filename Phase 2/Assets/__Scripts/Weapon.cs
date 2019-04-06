@@ -100,14 +100,14 @@ public class Weapon : MonoBehaviour
         {
             //If simple, then just shoot one bullet straight up
             case WeaponType.simple:
-               
+                FindObjectOfType<SoundManager>().Play("simpleAudio");
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
 
             //Three bullets
             case WeaponType.blaster:
-                gameObject.transform.root.GetComponent<SoundManager>().Invoke("Play", 0);
+                FindObjectOfType<SoundManager>().Play("blasterAudio");
                 p = MakeProjectile();   //Middle Proj.
                 p.rigid.velocity = vel;
                 p = MakeProjectile();   //Right Proj.
@@ -119,7 +119,7 @@ public class Weapon : MonoBehaviour
                 break;
 
             case WeaponType.sonic: //Makes 31 bullets
-                gameObject.transform.root.GetComponent<SoundManager>().Invoke("Play(missileAudio)", 0);
+                FindObjectOfType<SoundManager>().Play("JoseHelp");
                 p = MakeProjectile();   //Middle Proj.
                 p.rigid.velocity = vel;
 
@@ -135,7 +135,7 @@ public class Weapon : MonoBehaviour
                 break;
 
             case WeaponType.enemy:
-
+                FindObjectOfType<SoundManager>().Play("enemyAudio");
                 p = MakeProjectile();   //Middle Proj.
                 p.rigid.velocity = vel;
                 p = MakeProjectile();   //Right Proj.
@@ -149,7 +149,7 @@ public class Weapon : MonoBehaviour
             
              //Just make one bullet and let MissileProjectile control homing
             case WeaponType.missile:
-               
+                FindObjectOfType<SoundManager>().Play("missileAudio");
                 p = MakeProjectile();
                 break;
 

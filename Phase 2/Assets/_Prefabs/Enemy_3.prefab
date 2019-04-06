@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 982759454492421449}
   - component: {fileID: 731684980776187426}
   - component: {fileID: 3335692318478425733}
-  - component: {fileID: 7196673623303508540}
   m_Layer: 13
   m_Name: Enemy_3
   m_TagString: EnemyBoss
@@ -185,19 +184,6 @@ MonoBehaviour:
   powerUpDropChance: 1
   _weapon: {fileID: 0}
   gameRestartDelay: 2
---- !u!114 &7196673623303508540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3357657987310335844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f716815c85587242ab0910df91204a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 1004488846717904515, guid: 7ad82bdbce715419f8a7e843ce41d6a8, type: 3}
 --- !u!1 &3357657987429747741
 GameObject:
   m_ObjectHideFlags: 0

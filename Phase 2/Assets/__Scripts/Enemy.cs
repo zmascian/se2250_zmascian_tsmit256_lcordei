@@ -83,6 +83,7 @@ public class Enemy : MonoBehaviour
                     _notifiedOfDestruction = true;
 
                     Destroy(this.gameObject);
+                    FindObjectOfType<SoundManager>().Play("destroyAudio");
                     AddToScore();
                 }
                 Destroy(otherGO);
@@ -111,8 +112,10 @@ public class Enemy : MonoBehaviour
                         Main.S.ShipDestroyed(this);
                     }
                     _notifiedOfDestruction = true;
-                   
+
+                    
                     Destroy(this.gameObject);
+                    FindObjectOfType<SoundManager>().Play("destroyAudio");
                     AddToScore();
                 }
                 Destroy(otherGO);

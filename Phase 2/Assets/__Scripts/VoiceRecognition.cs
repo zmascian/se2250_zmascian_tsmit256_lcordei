@@ -46,6 +46,7 @@ public class VoiceRecognition : MonoBehaviour
     void IncreaseEnemySpawn()
     {
         _main.enemySpawnPerSecond += 0.75f;
+        FindObjectOfType<SoundManager>().Play("MoreEnemies");
     }
 
     void DecreaseEnemySpawn()
@@ -55,6 +56,7 @@ public class VoiceRecognition : MonoBehaviour
             _main.enemySpawnPerSecond -= 0.75f;
         else
             _main.enemySpawnPerSecond = 0.1f;
+        FindObjectOfType<SoundManager>().Play("LessEnemies");
     }
 
     void FireBulletWave()
@@ -63,6 +65,7 @@ public class VoiceRecognition : MonoBehaviour
         _weapon.type = WeaponType.sonic;
         _weapon.Fire();
         _weapon.type = temp;
+       
 
     }
 }

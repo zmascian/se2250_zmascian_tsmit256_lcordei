@@ -48,8 +48,14 @@ public class Main : MonoBehaviour
         {
             WEAP_DICT[def.type] = def;
         }
+
         
-        
+
+    }
+
+    public void Start()
+    {
+        FindObjectOfType<SoundManager>().Play("trackAudio");
     }
 
     public void ShipDestroyed(Enemy e)

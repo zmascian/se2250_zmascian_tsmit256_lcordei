@@ -102,6 +102,7 @@ public class BuddyShip : MonoBehaviour
 
         if (other.gameObject.tag == "ProjectileEnemy") //if triggered by an enemy projectile
         {
+            FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
             Destroy(this.gameObject);
             Destroy(other.gameObject);
             _lastTriggerGo = other.gameObject;
@@ -113,11 +114,13 @@ public class BuddyShip : MonoBehaviour
         _lastTriggerGo = go;
         if (go.tag == "EnemyBoss") //if triggered by an enemy
         {
+            FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
             Destroy(this.gameObject);
             Destroy(go);//... and Destroy the enemy
         }
         else if (go.tag == "Enemy") //if triggered by an enemy
-        {                      
+        {
+            FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
             Destroy(this.gameObject);      //... and Destroy the enemy
             Destroy(go);
         }
@@ -142,6 +145,7 @@ public class BuddyShip : MonoBehaviour
                 _heroScript.AbsorbPowerUp(go);
                 break;
             case WeaponType.bomb: //Only destroy the buddyShip, hero should not be hurt
+                FindObjectOfType<SoundManager>().Play("friendyDestroyAudio");
                 Destroy(this.gameObject);
                 break;
             default:

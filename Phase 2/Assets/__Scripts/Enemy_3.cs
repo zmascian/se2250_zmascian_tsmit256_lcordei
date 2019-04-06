@@ -35,7 +35,7 @@ public class Enemy_3 : Enemy
     {
         
         _weapon.Fire();
-        //transform.Find("Weapon").Find("Audio").Find("enemyAudio").GetComponent<AudioSource>().Play();
+        
 
 
         float u = (Time.time - _timeStart) / _duration;
@@ -67,6 +67,7 @@ public class Enemy_3 : Enemy
                 health -= Main.GetWeaponDefinition(p.type).damageOnHit;
                 if (health <= 0)
                 {
+                    FindObjectOfType<SoundManager>().Play("destroyAudio");
                     Destroy(this.gameObject);
                     AddToScore();
                     

@@ -235,7 +235,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   target: {fileID: 0}
   speed: 50
-  homingSensitivity: 0.9
+  homingSensitivity: 0.4
   highscoreReached1: 50
   highscoreReached2: 200
   highscoreReached3: 500

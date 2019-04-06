@@ -19,7 +19,7 @@ public class MissileProjectile : Projectile
         _buddyShip = GameObject.FindGameObjectWithTag("BuddyShip");
         _weapon = _buddyShip.GetComponentInChildren<Weapon>();
         _bndChecks = GetComponent<BoundsCheck>();
-        highscoreBasedSpeed();
+        highscoreBasedFireRate();
     }
 
     void Update()
@@ -46,7 +46,7 @@ public class MissileProjectile : Projectile
 
     //This function determines which delayBetweenShots the missiles will fire at based on the acheived highscore
     //A larger highscore means a smaller delayBetweenShots
-    void highscoreBasedSpeed()
+    void highscoreBasedFireRate()
     {
         _weapon.def.delayBetweenShots = delayBetweenShots0;
         if (ScoreManager._HIGH_SCORE >= highscoreReached1)
