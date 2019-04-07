@@ -7,10 +7,10 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour 
 {
 
-    public Sound[] sounds;
+    public Sound[] sounds; // an array to access and edit each sound we desire
     
     void Awake(){
-        foreach(Sound s in sounds){
+        foreach(Sound s in sounds){ //when the game starts add and Audio Source component for each sound clip and give it the following properties
            s.source= gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
@@ -25,12 +25,12 @@ public class SoundManager : MonoBehaviour
 
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = Array.Find(sounds, sound => sound.name == name); // plays the sound clip that matches the name we pass in
         s.source.Play();
        
     }
 
-    public void Stop(string name)
+    public void Stop(string name)  // Stops the sound clip that matches the name we pass in
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Stop();
