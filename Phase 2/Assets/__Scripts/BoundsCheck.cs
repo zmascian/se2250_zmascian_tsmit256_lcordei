@@ -24,30 +24,34 @@ public class BoundsCheck : MonoBehaviour
         isOnScreen = true;
         offRight = offLeft = offUp = offDown = false;
 
+        //Checking if object is off on the right of the screen
         if (pos.x > camWidth - radius)
         {
-            pos.x = camWidth - radius;
+            pos.x = camWidth - radius; //Prevent object from moving in the same direction
             isOnScreen = false;
             offRight = true;
         }
 
+        //Checking if object is off on the left of the screen
         if (pos.x < -camWidth + radius)
         {
-            pos.x = -camWidth + radius;
+            pos.x = -camWidth + radius; //Prevent object from moving in the same direction
             isOnScreen = false;
             offLeft = true;
         }
 
+        //Checking if object is off the upper part of the screen
         if (pos.y > camHeight - radius)
         {
-            pos.y = camHeight - radius;
+            pos.y = camHeight - radius; //Prevent object from moving in the same direction
             isOnScreen = false;
             offUp = true;
         }
 
+        //Checking if object is off the lower part of the screen
         if (pos.y < -camHeight + radius)
         {
-            pos.y = -camHeight + radius;
+            pos.y = -camHeight + radius; //Prevent object from moving in the same direction
             isOnScreen = false;
             offDown = true;
         }
