@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 861967425}
   - component: {fileID: 861967424}
   - component: {fileID: 861967426}
+  - component: {fileID: 861967427}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -512,6 +513,20 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &861967427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861967422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e914e8c79623f43945622bbca66529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 1415296258}
+  selectedObject: {fileID: 1945387232}
 --- !u!1 &946419693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,6 +1658,7 @@ GameObject:
   - component: {fileID: 1976562257}
   - component: {fileID: 1976562256}
   - component: {fileID: 1976562255}
+  - component: {fileID: 1976562258}
   m_Layer: 5
   m_Name: InstructionsMenuPanel
   m_TagString: Untagged
@@ -1732,3 +1748,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1976562253}
   m_CullTransparentMesh: 0
+--- !u!114 &1976562258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976562253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e914e8c79623f43945622bbca66529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 1415296258}
+  selectedObject: {fileID: 1370864230}

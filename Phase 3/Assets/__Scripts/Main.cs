@@ -111,10 +111,10 @@ public class Main : MonoBehaviour
    
     public void Restart()
     {
-        
-        //Reload _Scene_0 to restart the game
-        SceneManager.LoadScene("_Scene_0");
         ScoreManager.RESTART_SCORE();
+        //Reload _Scene_0 to restart the game
+        SceneManager.LoadScene("_MenuScene");
+        
         
     }
 
