@@ -118,7 +118,7 @@ public class VoiceRecognition : MonoBehaviour
 
             case 1:
                 //If there is a right buddy ship, add a left buddy ship
-                if (_buddyShip[0].name == "RightBuddyShip")
+                if (_buddyShip[0] != null &&_buddyShip[0].name == "RightBuddyShip")
                 {
                     newBuddyShip = Instantiate(buddyShipPrefab) as GameObject;
                     newBuddyShip.name = "LeftBuddyShip";
