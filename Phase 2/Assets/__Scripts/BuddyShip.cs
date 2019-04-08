@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class BuddyShip : MonoBehaviour
 {
 
-    public GameObject hero;
+    
     private Hero _heroScript;
     public float posXFromHero;          //A standard value that buddyShip should be from Hero
     private BoundsCheck _bndCheck;      
@@ -15,6 +15,7 @@ public class BuddyShip : MonoBehaviour
     private bool _possibleWarp;
     private float _speedDuration;
     private float _initSpeed;
+    private GameObject _hero;
     private Weapon _weapon;
 
 
@@ -32,7 +33,8 @@ public class BuddyShip : MonoBehaviour
         _possibleWarp = true;
 
         _bndCheck = GetComponent<BoundsCheck>();
-        _heroScript = hero.GetComponent<Hero>();
+        _hero = GameObject.FindGameObjectWithTag("Hero");
+        _heroScript = _hero.GetComponent<Hero>();
 
         _weapon = gameObject.GetComponentInChildren<Weapon>();
     }
@@ -43,7 +45,7 @@ public class BuddyShip : MonoBehaviour
         //Fires the weapon script attached to weapon GO of buddyShip
         _weapon.Fire();
 
-        if(hero == null) //once hero is destroyed, the buddy ship should be destroyed as well
+        if(_hero == null) //once hero is destroyed, the buddy ship should be destroyed as well
         {
             Destroy(this.gameObject);
         }
@@ -59,8 +61,8 @@ public class BuddyShip : MonoBehaviour
 
         //if hero is not at right or left edge, move BuddyShip. 
         //This will keep Buddyships from moving when Hero is not
-        if (hero!= null && hero.transform.position.x < _bndCheck.camWidth - hero.GetComponent<BoundsCheck>().radius
-            && hero.transform.position.x > -_bndCheck.camWidth + hero.GetComponent<BoundsCheck>().radius) 
+        if (_hero!= null && _hero.transform.position.x < _bndCheck.camWidth - _hero.GetComponent<BoundsCheck>().radius
+            && _hero.transform.position.x > -_bndCheck.camWidth + _hero.GetComponent<BoundsCheck>().radius) 
         {
             pos.x += xAxis * speed * Time.deltaTime; 
         }
@@ -68,17 +70,17 @@ public class BuddyShip : MonoBehaviour
 
 
         //If hero is too close to buddyShip or too far away...
-        if (hero != null && (posXFromHero > Mathf.Abs(transform.position.x - hero.transform.position.x) //If it is too close
-            || (posXFromHero < Mathf.Abs(transform.position.x - hero.transform.position.x) && //If it is too far
+        if (_hero != null && (posXFromHero > Mathf.Abs(transform.position.x - _hero.transform.position.x) //If it is too close
+            || (posXFromHero < Mathf.Abs(transform.position.x - _hero.transform.position.x) && //If it is too far
             _bndCheck.camWidth - Mathf.Abs(transform.position.x) > 15))) //If the buddyShip isn't warped on the otherside
         {
             //And, if buddyShip is on left side of hero...
-            if (transform.position.x - hero.transform.position.x < 0)
-            pos.x = hero.transform.position.x - posXFromHero; //Set new pos to be appropriately spaced away
+            if (transform.position.x - _hero.transform.position.x < 0)
+                pos.x = _hero.transform.position.x - posXFromHero; //Set new pos to be appropriately spaced away
 
             //Otherwise it will be on the right side
             else
-                pos.x = hero.transform.position.x + posXFromHero; //Set new pos to be appropriately spaced away
+                pos.x = _hero.transform.position.x + posXFromHero; //Set new pos to be appropriately spaced away
         }
 
         transform.position = pos; //Set the gameobjects position to the pos Vector
@@ -178,7 +180,7 @@ public class BuddyShip : MonoBehaviour
         //If it went off left, then put buddyship on the other side of screen
         if (GetComponent<BoundsCheck>() != null && GetComponent<BoundsCheck>().offLeft)
         {
-            pos.x = _bndCheck.camWidth - hero.GetComponent<BoundsCheck>().radius; //positions heroRadius from edge
+            pos.x = _bndCheck.camWidth - _hero.GetComponent<BoundsCheck>().radius; //positions heroRadius from edge
             transform.position = pos;
             FindObjectOfType<SoundManager>().Play("WarpSound");
         }
@@ -186,7 +188,7 @@ public class BuddyShip : MonoBehaviour
         //If it went off right, then put buddyship on the other side of screen
         else if (GetComponent<BoundsCheck>() != null && GetComponent<BoundsCheck>().offRight)
         {
-            pos.x = -_bndCheck.camWidth + hero.GetComponent<BoundsCheck>().radius; //positions heroRadius from edge
+            pos.x = -_bndCheck.camWidth + _hero.GetComponent<BoundsCheck>().radius; //positions heroRadius from edge
             transform.position = pos;
             FindObjectOfType<SoundManager>().Play("WarpSound");
         }

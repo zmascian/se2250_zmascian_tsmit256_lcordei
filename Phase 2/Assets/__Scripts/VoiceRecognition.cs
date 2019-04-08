@@ -11,7 +11,10 @@ public class VoiceRecognition : MonoBehaviour
     private Dictionary<string, Action> _actions = new Dictionary<string, Action>();
     private Main _main;
     public GameObject weaponGO;
+    public GameObject buddyShipPrefab;
     private Weapon _weapon;
+    private GameObject []_buddyShip;
+    private GameObject newBuddyShip;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,11 @@ public class VoiceRecognition : MonoBehaviour
         //Different phrases all cause fire wave of bullets
         _actions.Add("Jose help", FireBulletWave);
         _actions.Add("help", FireBulletWave);
+
+        //Ability to add another buddy Ship
+        _actions.Add("Buy Buddy Ship", AddBuddyShip);
+        _actions.Add("Buddy Ship", AddBuddyShip);
+        _actions.Add("Buy Friend", AddBuddyShip);
 
         _keywordRecognizer = new KeywordRecognizer(_actions.Keys.ToArray());
         _keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
@@ -77,6 +85,60 @@ public class VoiceRecognition : MonoBehaviour
         else
         {
             FindObjectOfType<SoundManager>().Play("NoJose");
+        }
+
+    }
+
+    void AddBuddyShip()
+    {
+        _buddyShip = GameObject.FindGameObjectsWithTag("BuddyShip"); //get list of buddyShips currently in scene
+
+        //This is the distance the buddyShips are away from hero
+        Vector3 displacementX = new Vector3(7, 0, 0); 
+        Vector3 displacementY = new Vector3(0, -1, 0);
+
+        if (ScoreManager.SCORE < 25) {
+//YUP            //Play unavailable voice sound
+            return;
+        }
+
+        //If there are two buddy ships
+        switch (_buddyShip.Length)
+        {
+            case 0:
+                //If no buddy ships, add a right buddy ship by default
+                newBuddyShip = Instantiate(buddyShipPrefab) as GameObject;
+                newBuddyShip.name = "RightBuddyShip";
+                newBuddyShip.transform.position = Hero.S.transform.position + displacementX + displacementY;
+
+                ScoreManager.LOSE_POINTS(25); //costs 25 points to buy a buddy ship
+//YUP                //Play buddy ship added voice sound
+
+                break;
+
+            case 1:
+                //If there is a right buddy ship, add a left buddy ship
+                if (_buddyShip[0].name == "RightBuddyShip")
+                {
+                    newBuddyShip = Instantiate(buddyShipPrefab) as GameObject;
+                    newBuddyShip.name = "LeftBuddyShip";
+                    newBuddyShip.transform.position = Hero.S.transform.position - displacementX + displacementY;
+                }
+                else //add a right buddy ship
+                {
+                    newBuddyShip = Instantiate(buddyShipPrefab) as GameObject;
+                    newBuddyShip.name = "RightBuddyShip";
+                    newBuddyShip.transform.position = Hero.S.transform.position + displacementX + displacementY;
+                }
+
+                ScoreManager.LOSE_POINTS(25); //costs 25 points to buy a buddy ship
+//YUP                //Play buddy ship added voice sound
+
+                break;
+
+            case 2:
+///YUP             //Play unavailable voice sound
+                break; //There cannot be more than two buddy ships
         }
 
     }
