@@ -98,7 +98,7 @@ public class VoiceRecognition : MonoBehaviour
         Vector3 displacementY = new Vector3(0, -1, 0);
 
         if (ScoreManager.SCORE < 25) {
-//YUP            //Play unavailable voice sound
+            FindObjectOfType<SoundManager>().Play("BuddyUnavailable");
             return;
         }
 
@@ -112,7 +112,7 @@ public class VoiceRecognition : MonoBehaviour
                 newBuddyShip.transform.position = Hero.S.transform.position + displacementX + displacementY;
 
                 ScoreManager.LOSE_POINTS(25); //costs 25 points to buy a buddy ship
-//YUP                //Play buddy ship added voice sound
+                FindObjectOfType<SoundManager>().Play("BuddyAdded");
 
                 break;
 
@@ -132,12 +132,12 @@ public class VoiceRecognition : MonoBehaviour
                 }
 
                 ScoreManager.LOSE_POINTS(25); //costs 25 points to buy a buddy ship
-//YUP                //Play buddy ship added voice sound
+                FindObjectOfType<SoundManager>().Play("BuddyAdded");
 
                 break;
 
             case 2:
-///YUP             //Play unavailable voice sound
+                FindObjectOfType<SoundManager>().Play("BuddyUnavailable");
                 break; //There cannot be more than two buddy ships
         }
 
