@@ -92,9 +92,12 @@ public class VoiceRecognition : MonoBehaviour
     void AddBuddyShip()
     {
         _buddyShip = GameObject.FindGameObjectsWithTag("BuddyShip"); //get list of buddyShips currently in scene
-        Vector3 displacement = new Vector3(7, 0, 0); //This is the distance the buddyShips are away from hero
-        
-        if(ScoreManager.SCORE < 25) {
+
+        //This is the distance the buddyShips are away from hero
+        Vector3 displacementX = new Vector3(7, 0, 0); 
+        Vector3 displacementY = new Vector3(0, -1, 0);
+
+        if (ScoreManager.SCORE < 25) {
 //YUP            //Play unavailable voice sound
             return;
         }
@@ -106,7 +109,7 @@ public class VoiceRecognition : MonoBehaviour
                 //If no buddy ships, add a right buddy ship by default
                 newBuddyShip = Instantiate(buddyShipPrefab) as GameObject;
                 newBuddyShip.name = "RightBuddyShip";
-                newBuddyShip.transform.position = Hero.S.transform.position + displacement;
+                newBuddyShip.transform.position = Hero.S.transform.position + displacementX + displacementY;
 
                 ScoreManager.LOSE_POINTS(25); //costs 25 points to buy a buddy ship
 //YUP                //Play buddy ship added voice sound
@@ -119,13 +122,13 @@ public class VoiceRecognition : MonoBehaviour
                 {
                     newBuddyShip = Instantiate(buddyShipPrefab) as GameObject;
                     newBuddyShip.name = "LeftBuddyShip";
-                    newBuddyShip.transform.position = Hero.S.transform.position - displacement;
+                    newBuddyShip.transform.position = Hero.S.transform.position - displacementX + displacementY;
                 }
                 else //add a right buddy ship
                 {
                     newBuddyShip = Instantiate(buddyShipPrefab) as GameObject;
                     newBuddyShip.name = "RightBuddyShip";
-                    newBuddyShip.transform.position = Hero.S.transform.position + displacement;
+                    newBuddyShip.transform.position = Hero.S.transform.position + displacementX + displacementY;
                 }
 
                 ScoreManager.LOSE_POINTS(25); //costs 25 points to buy a buddy ship
